@@ -1,5 +1,5 @@
 .piano-key-white {
-    -fx-background-color: #f0f0f0;
+    -fx-background-color: #e0e0e0;
     -fx-border-color: #333333;
     -fx-border-width: 1;
     -fx-border-radius: 5; /* Adjust the border radius as needed for a rounded look */
