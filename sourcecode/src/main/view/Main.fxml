@@ -2,24 +2,33 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <AnchorPane prefHeight="60.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER" />
-   </top>
    <right>
-      <AnchorPane prefHeight="200.0" prefWidth="86.0" style="-fx-background-color: yellow;" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="694.0" prefWidth="95.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
    </right>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Region VBox.vgrow="ALWAYS" />
+            <AnchorPane style="-fx-background-color: black;" VBox.vgrow="ALWAYS">
+               <children>
+                  <ImageView fitHeight="444.0" fitWidth="890.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resource/banner.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
             <Pane fx:id="pianoPane" style="-fx-background-color: black;">
                <children>
                   <Button alignment="BOTTOM_CENTER" layoutX="27.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@style.css" text="F" />
@@ -180,4 +189,25 @@
          </padding>
       </VBox>
    </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
 </BorderPane>

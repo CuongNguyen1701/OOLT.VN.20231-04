@@ -1,8 +1,10 @@
 .piano-key-white {
     -fx-background-color: #f0f0f0;
+    -fx-border-color: #333333;
 }
 .piano-key-black {
     -fx-background-color: black;
+    -fx-border-color: #333333;
 }
 .piano-key-white:hover {
     -fx-background-color: white;
