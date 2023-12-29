@@ -25,12 +25,12 @@
                <children>
                   <ImageView fitHeight="444.0" fitWidth="890.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resource/banner.jpg" />
+                        <Image url="@../../resources/banner.jpg" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="296.0" fitWidth="343.0" layoutX="789.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resource/group_intro.png" />
+                        <Image url="@../../resources/group_intro.png" />
                      </image>
                   </ImageView>
                </children>
@@ -217,7 +217,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Slider orientation="VERTICAL" />
+                  <Slider fx:id="volumeSlider" orientation="VERTICAL" />
                </children>
             </VBox>
             <VBox spacing="5.0">
