@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<AnchorPane>
+   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+      <center>
+         <VBox BorderPane.alignment="CENTER">
+            <children>
+               <AnchorPane style="-fx-background-color: black;" VBox.vgrow="ALWAYS">
+                  <children>
+                     <ImageView fitHeight="444.0" fitWidth="890.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../banner.jpg" />
+                        </image>
+                     </ImageView>
+                     <ImageView fitHeight="296.0" fitWidth="343.0" layoutX="789.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../group_intro.png" />
+                        </image>
+                     </ImageView>
+                  </children>
+               </AnchorPane>
+               <Pane fx:id="pianoPane" style="-fx-background-color: black;">
+                  <children>
+                     <Button fx:id="key001" alignment="BOTTOM_CENTER" layoutX="14.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="F" />
+                     <Button fx:id="key002" alignment="BOTTOM_CENTER" layoutX="49.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="G" />
+                     <Button fx:id="key003" alignment="BOTTOM_CENTER" layoutX="84.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="A" />
+                     <Button fx:id="key004" alignment="BOTTOM_CENTER" layoutX="119.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="B" />
+                     <Button fx:id="key005" alignment="BOTTOM_CENTER" layoutX="154.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="C" />
+                     <Button fx:id="key006" alignment="BOTTOM_CENTER" layoutX="189.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="D" />
+                     <Button fx:id="key007" alignment="BOTTOM_CENTER" layoutX="224.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="E" />
+                     <Button fx:id="key008" alignment="BOTTOM_CENTER" layoutX="259.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="F" />
+                     <Button fx:id="key009" alignment="BOTTOM_CENTER" layoutX="294.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="G" />
+                     <Button fx:id="key010" alignment="BOTTOM_CENTER" layoutX="329.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="A" />
+                     <Button fx:id="key011" alignment="BOTTOM_CENTER" layoutX="364.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="B" />
+                     <Button fx:id="key012" alignment="BOTTOM_CENTER" layoutX="399.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="C" />
+                     <Button fx:id="key013" alignment="BOTTOM_CENTER" layoutX="434.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="D" />
+                     <Button fx:id="key014" alignment="BOTTOM_CENTER" layoutX="469.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="E" />
+                     <Button fx:id="key015" alignment="BOTTOM_CENTER" layoutX="504.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="F" />
+                     <Button fx:id="key016" alignment="BOTTOM_CENTER" layoutX="539.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="G" />
+                     <Button fx:id="key017" alignment="BOTTOM_CENTER" layoutX="574.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="A" />
+                     <Button fx:id="key018" alignment="BOTTOM_CENTER" layoutX="609.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="B" />
+                     <Button fx:id="key019" alignment="BOTTOM_CENTER" layoutX="644.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="C" />
+                     <Button fx:id="key020" alignment="BOTTOM_CENTER" layoutX="679.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="D" />
+                     <Button fx:id="key021" alignment="BOTTOM_CENTER" layoutX="714.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="E" />
+                     <Button fx:id="key022" alignment="BOTTOM_CENTER" layoutX="749.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="F" />
+                     <Button fx:id="key023" alignment="BOTTOM_CENTER" layoutX="784.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="G" />
+                     <Button fx:id="key024" alignment="BOTTOM_CENTER" layoutX="819.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="A" />
+                     <Button fx:id="key025" alignment="BOTTOM_CENTER" layoutX="854.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="B" />
+                     <Button fx:id="key026" alignment="BOTTOM_CENTER" layoutX="889.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="C" />
+                     <Button fx:id="key027" alignment="BOTTOM_CENTER" layoutX="924.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="D" />
+                     <Button fx:id="key028" alignment="BOTTOM_CENTER" layoutX="959.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="E" />
+                     <Button fx:id="key029" alignment="BOTTOM_CENTER" layoutX="994.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="F" />
+                     <Button fx:id="key030" alignment="BOTTOM_CENTER" layoutX="1029.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="G" />
+                     <Button fx:id="key031" alignment="BOTTOM_CENTER" layoutX="1064.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="A" />
+                     <Button fx:id="key032" alignment="BOTTOM_CENTER" layoutX="1099.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="B" />
+                     <Button fx:id="key033" alignment="BOTTOM_CENTER" layoutX="37.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="F#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key034" alignment="BOTTOM_CENTER" ellipsisString="G#" layoutX="72.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="G#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key035" alignment="BOTTOM_CENTER" layoutX="107.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="A#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key036" alignment="BOTTOM_CENTER" layoutX="177.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="C#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key037" alignment="BOTTOM_CENTER" ellipsisString="D#" layoutX="212.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="D#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key038" alignment="BOTTOM_CENTER" layoutX="281.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="F#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key039" alignment="BOTTOM_CENTER" ellipsisString="G#" layoutX="316.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="G#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key040" alignment="BOTTOM_CENTER" layoutX="351.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="A#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key041" alignment="BOTTOM_CENTER" layoutX="421.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="C#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key042" alignment="BOTTOM_CENTER" ellipsisString="D#" layoutX="456.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="D#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key043" alignment="BOTTOM_CENTER" layoutX="526.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="F#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key044" alignment="BOTTOM_CENTER" ellipsisString="G#" layoutX="561.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="G#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key045" alignment="BOTTOM_CENTER" layoutX="596.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="A#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key046" alignment="BOTTOM_CENTER" layoutX="666.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="C#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key047" alignment="BOTTOM_CENTER" ellipsisString="D#" layoutX="701.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="D#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key048" alignment="BOTTOM_CENTER" layoutX="771.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="F#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key049" alignment="BOTTOM_CENTER" ellipsisString="G#" layoutX="806.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="G#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key050" alignment="BOTTOM_CENTER" layoutX="841.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="A#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key051" alignment="BOTTOM_CENTER" layoutX="911.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="C#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key052" alignment="BOTTOM_CENTER" ellipsisString="D#" layoutX="946.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="D#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key053" alignment="BOTTOM_CENTER" layoutX="1017.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="F#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key054" alignment="BOTTOM_CENTER" ellipsisString="G#" layoutX="1052.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="G#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="key055" alignment="BOTTOM_CENTER" layoutX="1087.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="25.0" styleClass="piano-key-black" stylesheets="@../css/style.css" text="A#" textFill="WHITE">
+                        <font>
+                           <Font size="9.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <padding>
+                     <Insets bottom="30.0" />
+                  </padding>
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+               </Pane>
+            </children>
+            <padding>
+               <Insets bottom="20.0" left="20.0" />
+            </padding>
+         </VBox>
+      </center>
+      <top>
+         <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+               <Menu mnemonicParsing="false" text="File" />
+               <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help" />
+               <Menu fx:id="aboutMenu" mnemonicParsing="false" text="About" />
+            </menus>
+         </MenuBar>
+      </top>
+      <left>
+         <VBox alignment="CENTER" prefWidth="100.0" spacing="10.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+            <children>
+               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                  <children>
+                     <Label text="Volume">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <Slider fx:id="volumeSlider" orientation="VERTICAL" />
+                  </children>
+               </VBox>
+               <VBox spacing="5.0">
+                  <children>
+                     <Label text="Music Style">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                     </Label>
+                     <RadioButton mnemonicParsing="false" selected="true" text="Classic">
+                        <toggleGroup>
+                           <ToggleGroup fx:id="musicStyleToggle" />
+                        </toggleGroup>
+                     </RadioButton>
+                     <RadioButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Electronic" toggleGroup="$musicStyleToggle" />
+                     <RadioButton layoutX="10.0" layoutY="28.0" mnemonicParsing="false" text="Jazz" toggleGroup="$musicStyleToggle" />
+                  </children>
+                  <padding>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </padding>
+               </VBox>
+               <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            </children>
+         </VBox>
+      </left>
+   </BorderPane>
+</AnchorPane>
