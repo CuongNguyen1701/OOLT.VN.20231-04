@@ -25,12 +25,12 @@
                   <children>
                      <ImageView fitHeight="444.0" fitWidth="890.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../banner.jpg" />
+                           <Image url="@../images/banner.jpg" />
                         </image>
                      </ImageView>
                      <ImageView fitHeight="296.0" fitWidth="343.0" layoutX="789.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@../group_intro.png" />
+                           <Image url="@../images/group_intro.png" />
                         </image>
                      </ImageView>
                   </children>
