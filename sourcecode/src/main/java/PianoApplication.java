@@ -13,8 +13,10 @@ public class PianoApplication {
             Home home = new Home();
             fxmlLoader.setController(home);
             Parent root = fxmlLoader.load();
+
+            Scene scene = new Scene(root);
             primaryStage.setTitle("Piano");
-            primaryStage.setScene(new Scene(root));
+            primaryStage.setScene(scene);
             primaryStage.show();
         }
         public static void main(String[] args) {

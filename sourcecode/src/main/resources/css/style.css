@@ -21,3 +21,13 @@
 .piano-key-black:hover {
     -fx-background-color: #555555; /* Darker color on hover for contrast */
 }
+.slider {
+    -default-track-color: -fx-control-inner-background;
+    -track-color: -default-track-color ;
+}
+
+.slider .track {
+    -fx-background-color: -fx-shadow-highlight-color,
+          linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+          -track-color;
+}

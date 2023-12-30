@@ -1,11 +1,13 @@
 package controller;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class Home {
 
@@ -188,6 +190,21 @@ public class Home {
 
     @FXML
     private Slider volumeSlider;
+    @FXML
+    private void initialize() {
+        // volume indicator
+        volumeSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
+            double percentage = 100.0 * newValue.doubleValue() / volumeSlider.getMax();
+            String style = String.format(
+                    "-track-color: linear-gradient(to top, " +
+                            "-fx-accent 0%%, " +
+                            "-fx-accent %1$.1f%%, " +
+                            "-default-track-color %1$.1f%%, " +
+                            "-default-track-color 100%%);",
+                    percentage);
+            volumeSlider.setStyle(style);
+        });
 
+    }
 
 }
