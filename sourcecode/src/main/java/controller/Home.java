@@ -2,12 +2,16 @@ package controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 public class Home {
 
@@ -204,7 +208,21 @@ public class Home {
                     percentage);
             volumeSlider.setStyle(style);
         });
+    }
 
+    @FXML
+    private void showAboutPopup() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/About.fxml"));
+            AnchorPane aboutPane = fxmlLoader.load();
+            Scene scene = new Scene(aboutPane);
+            Stage stage = new Stage();
+            stage.setTitle("About");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
