@@ -1,6 +1,9 @@
 package controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -8,7 +11,7 @@ import java.util.Scanner;
 public class About {
 
     @FXML
-    private Label lblAbout;
+    private TextFlow txtFlowContent;
     @FXML
     private void initialize(){
         String filepath = "../texts/about.txt";
@@ -21,7 +24,8 @@ public class About {
             }
 
             // Set the content to the Label
-            lblAbout.setText(content.toString());
+            Text text = new Text(content.toString());
+            txtFlowContent.getChildren().add(text);
 
         } catch (Exception e) {
             e.printStackTrace();
