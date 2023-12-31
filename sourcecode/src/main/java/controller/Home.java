@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.MusicStyle;
 import model.Piano;
+import model.Setting;
 
 import java.io.File;
 import java.io.PipedInputStream;
@@ -207,7 +208,7 @@ public class Home {
     private Slider volumeSlider;
 
     Piano piano;
-    MusicStyle musicStyle;
+    Setting setting;
     Map<String, String> IdToKeyName = new HashMap<>();
     @FXML
     private void initialize() {
@@ -215,7 +216,7 @@ public class Home {
         ArrayList<String> pianoKeyNames = getAllPianoKeyName();
         this.piano = new Piano(pianoKeyNames);
 //        // create MusicStyle
-        this.musicStyle = new MusicStyle("acoustic");
+        this.setting = new Setting();
         // volume indicator
         volumeSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
             double percentage = 100.0 * newValue.doubleValue() / volumeSlider.getMax();
@@ -257,8 +258,13 @@ public class Home {
             if (child instanceof Button pianoKey) {
                 String id = pianoKey.getId();
                 if (id != null && id.startsWith(prefix)) {
+                    // get the numeric value of the key
                     String numericPart = id.substring(prefix.length());
                     int keyNumber = Integer.parseInt(numericPart);
+
+                    // add the key name to the list based on the key number
+                    // key number 1-32 is major key(white key)
+                    // key number 33-55 is minor key(black key)
                     if(keyNumber < 33){
                         pianoKeyNames.add(majorKeyNames.get(keyNumber - 1));
                         IdToKeyName.put(id, majorKeyNames.get(keyNumber - 1));
@@ -276,7 +282,7 @@ public class Home {
     void handlePianoKeyClick(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();
         String keyName = IdToKeyName.get(id);
-        piano.playKey(keyName, musicStyle);
+        piano.playKey(keyName, setting.getMusicStyle());
     }
     @FXML
     private void showAboutPopup() {
