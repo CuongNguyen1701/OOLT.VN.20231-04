@@ -218,17 +218,23 @@ public class Home {
 //        // create MusicStyle
         this.setting = new Setting();
         // volume indicator
+        volumeSlider.setValue(setting.getVolume());
+        setVolumeSliderFill(setting.getVolume());
         volumeSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
             double percentage = 100.0 * newValue.doubleValue() / volumeSlider.getMax();
-            String style = String.format(
-                    "-track-color: linear-gradient(to top, " +
-                            "-fx-accent 0%%, " +
-                            "-fx-accent %1$.1f%%, " +
-                            "-default-track-color %1$.1f%%, " +
-                            "-default-track-color 100%%);",
-                    percentage);
-            volumeSlider.setStyle(style);
+            setting.updateVolume(newValue.intValue());
+            setVolumeSliderFill(percentage);
         });
+    }
+    void setVolumeSliderFill(double percentage){
+        String style = String.format(
+                "-track-color: linear-gradient(to top, " +
+                        "-fx-accent 0%%, " +
+                        "-fx-accent %1$.1f%%, " +
+                        "-default-track-color %1$.1f%%, " +
+                        "-default-track-color 100%%);",
+                percentage);
+        volumeSlider.setStyle(style);
     }
     private ArrayList<String> getAllPianoKeyName() {
         String prefix = "key";
@@ -282,7 +288,7 @@ public class Home {
     void handlePianoKeyClick(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();
         String keyName = IdToKeyName.get(id);
-        piano.playKey(keyName, setting.getMusicStyle());
+        piano.playKey(keyName, setting);
     }
     @FXML
     private void showAboutPopup() {

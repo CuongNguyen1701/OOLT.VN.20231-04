@@ -32,16 +32,16 @@ public class Piano {
         keyMap.put(keyCode, pianoKey);
         nameMap.put(pianoKey.getName(), pianoKey);
     }
-    public void playKey(String keyName, MusicStyle musicStyle){
+    public void playKey(String keyName, Setting setting) {
         PianoKey pianoKey = nameMap.get(keyName);
         if (pianoKey != null) {
-            pianoKey.play(musicStyle);
+            pianoKey.play(setting);
         }
     }
-    public void playKey(int keyCode, MusicStyle musicStyle) {
+    public void playKey(int keyCode, Setting setting) {
         PianoKey pianoKey = keyMap.get(keyCode);
         if (pianoKey != null) {
-            pianoKey.play(musicStyle);
+            pianoKey.play(setting);
         }
     }
 
