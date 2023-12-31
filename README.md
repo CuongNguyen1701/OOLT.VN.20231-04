@@ -7,3 +7,15 @@
 ## About the project
 ### Project's topic: Digital Piano
 The project's aim is to simulate the piano using a JavaFX application and Object-Oriented Programming techniques.
+### Usage
+- Clone the repository
+- Navigate to the 'sourcecode' folder
+- Install the dependencies using Maven Wrapper:
+```sh
+.\mvnw install
+```
+- Run the application:
+```sh
+.\mvnw clean javafx:run
+```
+
