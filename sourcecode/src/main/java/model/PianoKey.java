@@ -17,15 +17,17 @@ public class PianoKey implements Player {
     public String getName() {
         return name;
     }
-    public void play(MusicStyle musicStyle) {
-        String path = musicStyle.getPath() + name + ".wav";
-        play(path);
+    public void play(Setting setting) {
+        String path = setting.getMusicStyle().getPath() + name + ".wav";
+        double volume = setting.getVolume() / 100.0;
+        play(path, volume);
     }
     @Override
-    public void play(String filepath) {
+    public void play(String filepath, double volume) {
         String soundPath = Paths.get("target","classes", filepath).toString();
         Media sound = new Media(new File(soundPath).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(volume);
         mediaPlayer.play();
     }
     @Override
