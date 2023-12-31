@@ -14,6 +14,7 @@ The project's aim is to simulate the piano using a JavaFX application and Object
 ```sh
 .\mvnw install
 ```
+**Note:** make sure the system environment variable JAVA_HOME is set to the JDK's path before running the command.
 - Run the application:
 ```sh
 .\mvnw clean javafx:run
