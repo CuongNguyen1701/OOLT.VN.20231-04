@@ -222,6 +222,7 @@ public class Home {
         setVolumeSliderFill(setting.getVolume());
         volumeSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
             double percentage = 100.0 * newValue.doubleValue() / volumeSlider.getMax();
+            setting.updateVolume(newValue.intValue());
             setVolumeSliderFill(percentage);
         });
     }
@@ -287,7 +288,7 @@ public class Home {
     void handlePianoKeyClick(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();
         String keyName = IdToKeyName.get(id);
-        piano.playKey(keyName, setting.getMusicStyle());
+        piano.playKey(keyName, setting);
     }
     @FXML
     private void showAboutPopup() {
