@@ -8,4 +8,8 @@ public class MusicStyle {
     public String getPath() {
         return "/audio/musicstyles/" + name + "/";
     }
+
+    public String getName() {
+        return name;
+    }
 }
