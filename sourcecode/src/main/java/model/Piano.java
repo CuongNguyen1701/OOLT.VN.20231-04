@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,13 @@ public class Piano {
         this.keyMap = keyMap;
         for (PianoKey pianoKey : keyMap.values()) {
             nameMap.put(pianoKey.getName(), pianoKey);
+        }
+    }
+    public Piano(ArrayList<String> keyNames) {
+        this.keyMap = new HashMap<>();
+        for (String keyName : keyNames) {
+            PianoKey pianoKey = new PianoKey(keyName);
+            nameMap.put(keyName, pianoKey);
         }
     }
     public Piano(PianoKey[] pianoKeys) {
