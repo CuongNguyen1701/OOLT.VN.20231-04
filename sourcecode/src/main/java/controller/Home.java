@@ -1,8 +1,10 @@
 package controller;
 
 import javafx.beans.value.ChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
@@ -12,6 +14,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.MusicStyle;
+import model.Piano;
+
+import java.io.File;
+import java.io.PipedInputStream;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Home {
 
@@ -194,8 +205,17 @@ public class Home {
 
     @FXML
     private Slider volumeSlider;
+
+    Piano piano;
+    MusicStyle musicStyle;
+    Map<String, String> IdToKeyName = new HashMap<>();
     @FXML
     private void initialize() {
+        // create piano
+        ArrayList<String> pianoKeyNames = getAllPianoKeyName();
+        this.piano = new Piano(pianoKeyNames);
+//        // create MusicStyle
+        this.musicStyle = new MusicStyle("acoustic");
         // volume indicator
         volumeSlider.valueProperty().addListener((obs, oldValue, newValue) -> {
             double percentage = 100.0 * newValue.doubleValue() / volumeSlider.getMax();
@@ -209,7 +229,55 @@ public class Home {
             volumeSlider.setStyle(style);
         });
     }
-
+    private ArrayList<String> getAllPianoKeyName() {
+        String prefix = "key";
+        ArrayList<String> pianoKeyNames = new ArrayList<>();
+        ArrayList<String> majorKeyNames = new ArrayList<>();
+        ArrayList<String> minorKeyNames = new ArrayList<>();
+        String audioPath = Paths.get("target","classes", "audio", "musicstyles", "acoustic").toString();
+        File folder = new File(audioPath);
+        File[] files = folder.listFiles();
+        // get all file names from the directory
+        assert files != null;
+        for (File file : files) {
+            if (file == null || file.isDirectory() || file.isHidden()) {
+                continue;
+            }
+            String filepath = file.toString();
+            String filename = filepath.substring(filepath.lastIndexOf("\\") + 1);
+            // remove .wav extension
+            filename = filename.substring(0, filename.length() - 4);
+            if (filename.contains("s")) {
+                minorKeyNames.add(filename);
+            } else {
+                majorKeyNames.add(filename);
+            }
+        }
+        for (Node child : pianoPane.getChildren()) {
+            if (child instanceof Button pianoKey) {
+                String id = pianoKey.getId();
+                if (id != null && id.startsWith(prefix)) {
+                    String numericPart = id.substring(prefix.length());
+                    int keyNumber = Integer.parseInt(numericPart);
+                    if(keyNumber < 33){
+                        pianoKeyNames.add(majorKeyNames.get(keyNumber - 1));
+                        IdToKeyName.put(id, majorKeyNames.get(keyNumber - 1));
+                    }
+                    else{
+                        pianoKeyNames.add(minorKeyNames.get(keyNumber - 33));
+                        IdToKeyName.put(id, minorKeyNames.get(keyNumber - 33));
+                    }
+                }
+            }
+        }
+        return pianoKeyNames;
+    }
+    @FXML
+    void handlePianoKeyClick(ActionEvent event) {
+        String id = ((Button) event.getSource()).getId();
+        String keyName = IdToKeyName.get(id);
+        piano.playKey(keyName, musicStyle);
+    }
     @FXML
     private void showAboutPopup() {
         try {
@@ -224,5 +292,7 @@ public class Home {
             e.printStackTrace();
         }
     }
+
+
 
 }
