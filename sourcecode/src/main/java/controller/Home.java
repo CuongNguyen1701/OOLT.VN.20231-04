@@ -210,7 +210,7 @@ public class Home {
     private Scene scene;
     Piano piano;
     Setting setting;
-    Map<String, String> IdToKeyName = new HashMap<>();
+    Map<String, String> idToKeyName = new HashMap<>();
     @FXML
     private void initialize() {
         // create piano
@@ -275,11 +275,11 @@ public class Home {
                     // key number 33-55 is minor key(black key)
                     if(keyNumber < 33){
                         pianoKeyNames.add(majorKeyNames.get(keyNumber - 1));
-                        IdToKeyName.put(id, majorKeyNames.get(keyNumber - 1));
+                        idToKeyName.put(id, majorKeyNames.get(keyNumber - 1));
                     }
                     else{
                         pianoKeyNames.add(minorKeyNames.get(keyNumber - 33));
-                        IdToKeyName.put(id, minorKeyNames.get(keyNumber - 33));
+                        idToKeyName.put(id, minorKeyNames.get(keyNumber - 33));
                     }
                 }
             }
@@ -293,14 +293,15 @@ public class Home {
         for(int i = 0; i < (keyNamesMajorNotes.length + keyNamesMinorNotes.length); i++){
             int keyId = i + 1;
             if(i < 10) {
-                piano.setKeyMap(keyNamesMajorNotes[i], IdToKeyName.get("key00" + keyId));
+                piano.setKeyMap(keyNamesMajorNotes[i], idToKeyName.get("key00" + keyId));
                 continue;
             }
             if(i < keyNamesMajorNotes.length){
-                piano.setKeyMap(keyNamesMajorNotes[i], IdToKeyName.get("key0"+keyId));
+                piano.setKeyMap(keyNamesMajorNotes[i], idToKeyName.get("key0"+keyId));
                 continue;
             }
-            piano.setKeyMap(keyNamesMinorNotes[i - keyNamesMajorNotes.length], IdToKeyName.get("key0"+keyId));
+            
+            piano.setKeyMap(keyNamesMinorNotes[i - keyNamesMajorNotes.length], idToKeyName.get("key0"+keyId));
 
         }
     }
@@ -313,7 +314,7 @@ public class Home {
     void handlePianoKeyClick(ActionEvent event) {
         // do nothing if the user typed space or enter
         String id = ((Button) event.getSource()).getId();
-        String keyName = IdToKeyName.get(id);
+        String keyName = idToKeyName.get(id);
         piano.playKey(keyName, setting);
     }
     @FXML
