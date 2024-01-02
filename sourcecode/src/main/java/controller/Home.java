@@ -18,6 +18,7 @@ import model.MusicStyle;
 import model.Piano;
 import model.Setting;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.PipedInputStream;
 import java.nio.file.Paths;
@@ -206,7 +207,7 @@ public class Home {
 
     @FXML
     private Slider volumeSlider;
-
+    private Scene scene;
     Piano piano;
     Setting setting;
     Map<String, String> IdToKeyName = new HashMap<>();
@@ -284,8 +285,34 @@ public class Home {
         }
         return pianoKeyNames;
     }
+
+    public void initializeScene(Scene scene) {
+        this.scene = scene;
+        char[] keyNamesMajorNotes = "qwertyuiop[]asdfghjkl;'zxcvbnm,.".toCharArray(); // 32 keys
+        char[] keyNamesMinorNotes = "QWERTYUIOP{}ASDFGHJKL:\"".toCharArray(); // 23 keys
+        // append two arrays
+        for(int i = 0; i < (keyNamesMajorNotes.length + keyNamesMinorNotes.length); i++){
+            int keyId = i + 1;
+            if(i < 10) {
+                piano.setKeyMap(keyNamesMajorNotes[i], IdToKeyName.get("key00" + keyId));
+                continue;
+            }
+            if(i < keyNamesMajorNotes.length){
+                piano.setKeyMap(keyNamesMajorNotes[i], IdToKeyName.get("key0"+keyId));
+                continue;
+            }
+            piano.setKeyMap(keyNamesMinorNotes[i - keyNamesMajorNotes.length], IdToKeyName.get("key0"+keyId));
+
+        }
+        scene.setOnKeyTyped(event -> {
+            int keyValue = event.getCharacter().charAt(0);
+            piano.playKey(keyValue, setting);
+        });
+    }
+
     @FXML
     void handlePianoKeyClick(ActionEvent event) {
+        // do nothing if the user typed space or enter
         String id = ((Button) event.getSource()).getId();
         String keyName = IdToKeyName.get(id);
         piano.playKey(keyName, setting);
