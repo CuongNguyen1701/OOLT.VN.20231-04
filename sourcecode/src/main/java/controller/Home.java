@@ -210,7 +210,10 @@ public class Home {
     private Scene scene;
     Piano piano;
     Setting setting;
+    // key fx:id to key name
     Map<String, String> idToKeyName = new HashMap<>();
+    // keyboard's key code to fx:id
+    Map<Integer, String> keyCodeToId = new HashMap<>();
     @FXML
     private void initialize() {
         // create piano
@@ -291,29 +294,27 @@ public class Home {
         char[] keyNamesMinorNotes = "QWERTYUIOP{}ASDFGHJKL:\"".toCharArray(); // 23 keys
         // append two arrays
         for(int i = 0; i < (keyNamesMajorNotes.length + keyNamesMinorNotes.length); i++){
+            String keyIdPrefix = "key0";
             int keyId = i + 1;
-            if(i < 10) {
-                piano.setKeyMap(keyNamesMajorNotes[i], idToKeyName.get("key00" + keyId));
-                continue;
-            }
             if(i < keyNamesMajorNotes.length){
-                piano.setKeyMap(keyNamesMajorNotes[i], idToKeyName.get("key0"+keyId));
+                keyIdPrefix += ((i<10) ? "0" : "");//add extra 0 to make sure it is 3 digits
+                piano.setKeyMap(keyNamesMajorNotes[i], idToKeyName.get(keyIdPrefix + keyId));
+                keyCodeToId.put((int)keyNamesMajorNotes[i], keyIdPrefix + keyId);
                 continue;
             }
-            
-            piano.setKeyMap(keyNamesMinorNotes[i - keyNamesMajorNotes.length], idToKeyName.get("key0"+keyId));
-
+            piano.setKeyMap(keyNamesMinorNotes[i - keyNamesMajorNotes.length], idToKeyName.get(keyIdPrefix + keyId));
+            keyCodeToId.put((int)keyNamesMinorNotes[i - keyNamesMajorNotes.length], keyIdPrefix + keyId);
         }
     }
     @FXML void handleKeyTyped(KeyEvent event){
         int keyValue = event.getCharacter().charAt(0);
-        System.out.println(keyValue);
+        System.out.println(keyCodeToId.get(keyValue));
         piano.playKey(keyValue, setting);
     }
     @FXML
     void handlePianoKeyClick(ActionEvent event) {
-        // do nothing if the user typed space or enter
         String id = ((Button) event.getSource()).getId();
+        System.out.println(id);
         String keyName = idToKeyName.get(id);
         piano.playKey(keyName, setting);
     }
