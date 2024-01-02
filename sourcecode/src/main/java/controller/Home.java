@@ -294,8 +294,8 @@ public class Home {
         for(int i = 0; i < (keyNamesMajorNotes.length + keyNamesMinorNotes.length); i++){
             String keyIdPrefix = "key0";
             int keyId = i + 1;
+            keyIdPrefix += ((keyId<10) ? "0" : "");//add extra 0 to make sure it is 3 digits
             if(i < keyNamesMajorNotes.length){
-                keyIdPrefix += ((i<10) ? "0" : "");//add extra 0 to make sure it is 3 digits
                 piano.setKeyMap(keyNamesMajorNotes[i], idToKeyName.get(keyIdPrefix + keyId));
                 keyCodeToId.put((int)keyNamesMajorNotes[i], keyIdPrefix + keyId);
                 continue;
@@ -306,14 +306,12 @@ public class Home {
     }
     @FXML void handleKeyTyped(KeyEvent event){
         int keyValue = event.getCharacter().charAt(0);
-        System.out.println(keyCodeToId.get(keyValue));
         highlightKey(keyCodeToId.get(keyValue));
         piano.playKey(keyValue, setting);
     }
     @FXML
     void handlePianoKeyClick(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();
-        System.out.println(id);
         highlightKey(id);
         String keyName = idToKeyName.get(id);
         piano.playKey(keyName, setting);
