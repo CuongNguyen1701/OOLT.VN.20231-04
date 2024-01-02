@@ -28,9 +28,8 @@ public class Piano {
             nameMap.put(pianoKey.getName(), pianoKey);
         }
     }
-    public void setKeyMap(int keyCode, PianoKey pianoKey) {
-        keyMap.put(keyCode, pianoKey);
-        nameMap.put(pianoKey.getName(), pianoKey);
+    public void setKeyMap(int keyCode, String pianoKeyName) {
+        keyMap.put(keyCode, nameMap.get(pianoKeyName));
     }
     public void playKey(String keyName, Setting setting) {
         PianoKey pianoKey = nameMap.get(keyName);
