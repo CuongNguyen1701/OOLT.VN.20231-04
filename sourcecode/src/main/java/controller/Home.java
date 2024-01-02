@@ -216,6 +216,7 @@ public class Home {
         // create piano
         ArrayList<String> pianoKeyNames = getAllPianoKeyName();
         this.piano = new Piano(pianoKeyNames);
+        initializePianoKeyMapping();
 //        // create MusicStyle
         this.setting = new Setting();
         // volume indicator
@@ -285,9 +286,7 @@ public class Home {
         }
         return pianoKeyNames;
     }
-
-    public void initializeScene(Scene scene) {
-        this.scene = scene;
+    private void initializePianoKeyMapping(){
         char[] keyNamesMajorNotes = "qwertyuiop[]asdfghjkl;'zxcvbnm,.".toCharArray(); // 32 keys
         char[] keyNamesMinorNotes = "QWERTYUIOP{}ASDFGHJKL:\"".toCharArray(); // 23 keys
         // append two arrays
@@ -304,10 +303,6 @@ public class Home {
             piano.setKeyMap(keyNamesMinorNotes[i - keyNamesMajorNotes.length], IdToKeyName.get("key0"+keyId));
 
         }
-//        scene.setOnKeyTyped(event -> {
-//            int keyValue = event.getCharacter().charAt(0);
-//            piano.playKey(keyValue, setting);
-//        });
     }
     @FXML void handleKeyTyped(KeyEvent event){
         int keyValue = event.getCharacter().charAt(0);
