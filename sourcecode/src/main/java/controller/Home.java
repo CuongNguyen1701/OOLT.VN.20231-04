@@ -22,9 +22,7 @@ import model.Setting;
 import java.io.File;
 import java.io.PipedInputStream;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Home {
 
@@ -309,14 +307,30 @@ public class Home {
     @FXML void handleKeyTyped(KeyEvent event){
         int keyValue = event.getCharacter().charAt(0);
         System.out.println(keyCodeToId.get(keyValue));
+        highlightKey(keyCodeToId.get(keyValue));
         piano.playKey(keyValue, setting);
     }
     @FXML
     void handlePianoKeyClick(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();
         System.out.println(id);
+        highlightKey(id);
         String keyName = idToKeyName.get(id);
         piano.playKey(keyName, setting);
+    }
+    void highlightKey(String keyFxId){
+        String style = "-fx-background-color: #ee1111;";
+        pianoPane.lookup("#" + keyFxId).setStyle(style);
+        // remove the style after 0.1 second
+        new Timer().schedule(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        pianoPane.lookup("#" + keyFxId).setStyle("");
+                    }
+                },
+                100
+        );
     }
     @FXML
     private void showAboutPopup() {
