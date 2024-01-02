@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -18,7 +19,6 @@ import model.MusicStyle;
 import model.Piano;
 import model.Setting;
 
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.PipedInputStream;
 import java.nio.file.Paths;
@@ -304,12 +304,16 @@ public class Home {
             piano.setKeyMap(keyNamesMinorNotes[i - keyNamesMajorNotes.length], IdToKeyName.get("key0"+keyId));
 
         }
-        scene.setOnKeyTyped(event -> {
-            int keyValue = event.getCharacter().charAt(0);
-            piano.playKey(keyValue, setting);
-        });
+//        scene.setOnKeyTyped(event -> {
+//            int keyValue = event.getCharacter().charAt(0);
+//            piano.playKey(keyValue, setting);
+//        });
     }
-
+    @FXML void handleKeyTyped(KeyEvent event){
+        int keyValue = event.getCharacter().charAt(0);
+        System.out.println(keyValue);
+        piano.playKey(keyValue, setting);
+    }
     @FXML
     void handlePianoKeyClick(ActionEvent event) {
         // do nothing if the user typed space or enter
@@ -331,7 +335,5 @@ public class Home {
             e.printStackTrace();
         }
     }
-
-
 
 }
