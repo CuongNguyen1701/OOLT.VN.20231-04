@@ -320,17 +320,23 @@ public class Home {
     //highlight the key when it is played
     void highlightKey(String keyFxId){
         String style = "-fx-background-color: #ee1111;";
-        pianoPane.lookup("#" + keyFxId).setStyle(style);
-        // remove the style after 0.1 second
-        new Timer().schedule(
+        try{
+            pianoPane.lookup("#" + keyFxId).setStyle(style);
+            // remove the style after 0.1 second
+            Timer timer = new Timer();
+            timer.schedule(
                 new TimerTask() {
                     @Override
                     public void run() {
                         pianoPane.lookup("#" + keyFxId).setStyle("");
+                        timer.cancel();
                     }
                 },
                 100
-        );
+            );
+        }catch (NullPointerException e){
+            System.out.println("Key not found");
+        }
     }
     @FXML
     private void showAboutPopup() {
