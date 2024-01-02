@@ -218,7 +218,6 @@ public class Home {
         ArrayList<String> pianoKeyNames = getAllPianoKeyName();
         this.piano = new Piano(pianoKeyNames);
         initializePianoKeyMapping();
-//        // create MusicStyle
         this.setting = new Setting();
         // volume indicator
         volumeSlider.setValue(setting.getVolume());
@@ -288,9 +287,11 @@ public class Home {
         return pianoKeyNames;
     }
     private void initializePianoKeyMapping(){
+        // no shift key holding to play major notes
         char[] keyNamesMajorNotes = "qwertyuiop[]asdfghjkl;'zxcvbnm,.".toCharArray(); // 32 keys
+        // shift key holding to play minor notes
         char[] keyNamesMinorNotes = "QWERTYUIOP{}ASDFGHJKL:\"".toCharArray(); // 23 keys
-        // append two arrays
+
         for(int i = 0; i < (keyNamesMajorNotes.length + keyNamesMinorNotes.length); i++){
             String keyIdPrefix = "key0";
             int keyId = i + 1;
@@ -316,6 +317,7 @@ public class Home {
         String keyName = idToKeyName.get(id);
         piano.playKey(keyName, setting);
     }
+    //highlight the key when it is played
     void highlightKey(String keyFxId){
         String style = "-fx-background-color: #ee1111;";
         pianoPane.lookup("#" + keyFxId).setStyle(style);
