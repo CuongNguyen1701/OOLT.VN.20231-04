@@ -17,8 +17,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Home">
-   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Home">
+   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" onKeyTyped="#handleKeyTyped">
       <center>
          <VBox BorderPane.alignment="CENTER">
             <children>
@@ -38,10 +38,10 @@
                </AnchorPane>
                <Pane fx:id="pianoPane" style="-fx-background-color: black;">
                   <children>
-                     <Button fx:id="key001" alignment="BOTTOM_CENTER" layoutX="14.0" mnemonicParsing="false"  onAction="#handlePianoKeyClick" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="F" />
-                     <Button fx:id="key002" alignment="BOTTOM_CENTER" layoutX="49.0" mnemonicParsing="false"  onAction="#handlePianoKeyClick" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="G" />
+                     <Button fx:id="key001" alignment="BOTTOM_CENTER" layoutX="14.0" mnemonicParsing="false" onAction="#handlePianoKeyClick" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="F" />
+                     <Button fx:id="key002" alignment="BOTTOM_CENTER" layoutX="49.0" mnemonicParsing="false" onAction="#handlePianoKeyClick" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="G" />
                      <Button fx:id="key003" alignment="BOTTOM_CENTER" layoutX="84.0" mnemonicParsing="false" onAction="#handlePianoKeyClick" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="A" />
-                     <Button fx:id="key004" alignment="BOTTOM_CENTER" layoutX="119.0" mnemonicParsing="false"  onAction="#handlePianoKeyClick" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="B" />
+                     <Button fx:id="key004" alignment="BOTTOM_CENTER" layoutX="119.0" mnemonicParsing="false" onAction="#handlePianoKeyClick" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="B" />
                      <Button fx:id="key005" alignment="BOTTOM_CENTER" layoutX="154.0" mnemonicParsing="false" onAction="#handlePianoKeyClick" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="C" />
                      <Button fx:id="key006" alignment="BOTTOM_CENTER" layoutX="189.0" mnemonicParsing="false" onAction="#handlePianoKeyClick" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="D" />
                      <Button fx:id="key007" alignment="BOTTOM_CENTER" layoutX="224.0" mnemonicParsing="false" onAction="#handlePianoKeyClick" prefHeight="200.0" prefWidth="35.0" styleClass="piano-key-white" stylesheets="@../css/style.css" text="E" />

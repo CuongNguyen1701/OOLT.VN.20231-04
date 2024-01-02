@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -21,9 +22,7 @@ import model.Setting;
 import java.io.File;
 import java.io.PipedInputStream;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Home {
 
@@ -206,16 +205,19 @@ public class Home {
 
     @FXML
     private Slider volumeSlider;
-
+    private Scene scene;
     Piano piano;
     Setting setting;
-    Map<String, String> IdToKeyName = new HashMap<>();
+    // key fx:id to key name
+    Map<String, String> idToKeyName = new HashMap<>();
+    // keyboard's key code to fx:id
+    Map<Integer, String> keyCodeToId = new HashMap<>();
     @FXML
     private void initialize() {
         // create piano
         ArrayList<String> pianoKeyNames = getAllPianoKeyName();
         this.piano = new Piano(pianoKeyNames);
-//        // create MusicStyle
+        initializePianoKeyMapping();
         this.setting = new Setting();
         // volume indicator
         volumeSlider.setValue(setting.getVolume());
@@ -273,22 +275,68 @@ public class Home {
                     // key number 33-55 is minor key(black key)
                     if(keyNumber < 33){
                         pianoKeyNames.add(majorKeyNames.get(keyNumber - 1));
-                        IdToKeyName.put(id, majorKeyNames.get(keyNumber - 1));
+                        idToKeyName.put(id, majorKeyNames.get(keyNumber - 1));
                     }
                     else{
                         pianoKeyNames.add(minorKeyNames.get(keyNumber - 33));
-                        IdToKeyName.put(id, minorKeyNames.get(keyNumber - 33));
+                        idToKeyName.put(id, minorKeyNames.get(keyNumber - 33));
                     }
                 }
             }
         }
         return pianoKeyNames;
     }
+    private void initializePianoKeyMapping(){
+        // no shift key holding to play major notes
+        char[] keyNamesMajorNotes = "qwertyuiop[]asdfghjkl;'zxcvbnm,.".toCharArray(); // 32 keys
+        // shift key holding to play minor notes
+        char[] keyNamesMinorNotes = "QWERTYUIOP{}ASDFGHJKL:\"".toCharArray(); // 23 keys
+
+        for(int i = 0; i < (keyNamesMajorNotes.length + keyNamesMinorNotes.length); i++){
+            String keyIdPrefix = "key0";
+            int keyId = i + 1;
+            keyIdPrefix += ((keyId<10) ? "0" : "");//add extra 0 to make sure it is 3 digits
+            if(i < keyNamesMajorNotes.length){
+                piano.setKeyMap(keyNamesMajorNotes[i], idToKeyName.get(keyIdPrefix + keyId));
+                keyCodeToId.put((int)keyNamesMajorNotes[i], keyIdPrefix + keyId);
+                continue;
+            }
+            piano.setKeyMap(keyNamesMinorNotes[i - keyNamesMajorNotes.length], idToKeyName.get(keyIdPrefix + keyId));
+            keyCodeToId.put((int)keyNamesMinorNotes[i - keyNamesMajorNotes.length], keyIdPrefix + keyId);
+        }
+    }
+    @FXML void handleKeyTyped(KeyEvent event){
+        int keyValue = event.getCharacter().charAt(0);
+        highlightKey(keyCodeToId.get(keyValue));
+        piano.playKey(keyValue, setting);
+    }
     @FXML
     void handlePianoKeyClick(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();
-        String keyName = IdToKeyName.get(id);
+        highlightKey(id);
+        String keyName = idToKeyName.get(id);
         piano.playKey(keyName, setting);
+    }
+    //highlight the key when it is played
+    void highlightKey(String keyFxId){
+        String style = "-fx-background-color: #ee1111;";
+        try{
+            pianoPane.lookup("#" + keyFxId).setStyle(style);
+            // remove the style after 0.1 second
+            Timer timer = new Timer();
+            timer.schedule(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        pianoPane.lookup("#" + keyFxId).setStyle("");
+                        timer.cancel();
+                    }
+                },
+                100
+            );
+        }catch (NullPointerException e){
+            System.out.println("Key not found");
+        }
     }
     @FXML
     private void showAboutPopup() {
@@ -304,7 +352,5 @@ public class Home {
             e.printStackTrace();
         }
     }
-
-
 
 }
