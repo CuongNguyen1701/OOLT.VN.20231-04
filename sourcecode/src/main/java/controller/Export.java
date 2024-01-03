@@ -31,6 +31,7 @@ public class Export {
     public void setRecord(Record record) {
         this.record = record;
     }
+    private File selectedFile;
     @FXML
     void handleBrowse(ActionEvent event) {
         if(!(record instanceof StepRecord || record instanceof AudioRecord))
@@ -40,8 +41,7 @@ public class Export {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv", "*.wav");
         fileChooser.getExtensionFilters().add(extFilter);
         fileChooser.setTitle("Select Destination");
-        fileChooser.setInitialDirectory(new File(Paths.get("target","classes", "output").toString()));
-        File selectedFile = fileChooser.showSaveDialog(null);
+        selectedFile = fileChooser.showSaveDialog(null);
         if(selectedFile == null)
             return;
         String filePath = selectedFile.getAbsolutePath();
@@ -71,12 +71,12 @@ public class Export {
             ((Button) event.getSource()).getScene().getWindow().hide();
             return;
         }
-        String destination = labelSelectedDestination.getText();
-        if (destination == null || destination.isEmpty()) {
+        if(selectedFile == null){
             // Show error message popup if the destination is empty
             showPopup("Error", "Destination is not specified.");
             return;
         }
+        String destination = selectedFile.getAbsolutePath();
         record.export(destination);
         // Show success message popup
         showPopup("Export Successful", "Record exported successfully.");
