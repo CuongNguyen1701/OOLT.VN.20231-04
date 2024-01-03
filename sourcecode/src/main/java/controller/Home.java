@@ -358,7 +358,6 @@ public class Home {
         if(recorder.getRecordingStatus()){
             recorder.stopRecording();
             ((Button)actionEvent.getSource()).setText("Start Recording");
-            recorder.getStepRecord().play();
         }
         else{
             recorder.startRecording();
