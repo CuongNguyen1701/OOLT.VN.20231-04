@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.MusicStyle;
 import model.Piano;
+import model.Recorder;
 import model.Setting;
 
 import java.io.File;
@@ -208,6 +209,7 @@ public class Home {
     private Scene scene;
     Piano piano;
     Setting setting;
+    Recorder recorder;
     // key fx:id to key name
     Map<String, String> idToKeyName = new HashMap<>();
     // keyboard's key code to fx:id
@@ -219,6 +221,7 @@ public class Home {
         this.piano = new Piano(pianoKeyNames);
         initializePianoKeyMapping();
         this.setting = new Setting();
+        this.recorder = new Recorder();
         // volume indicator
         volumeSlider.setValue(setting.getVolume());
         setVolumeSliderFill(setting.getVolume());
@@ -309,6 +312,7 @@ public class Home {
         int keyValue = event.getCharacter().charAt(0);
         highlightKey(keyCodeToId.get(keyValue));
         piano.playKey(keyValue, setting);
+        recorder.recordKeyPlayed(piano.getKey(keyValue));
     }
     @FXML
     void handlePianoKeyClick(ActionEvent event) {
@@ -316,6 +320,7 @@ public class Home {
         highlightKey(id);
         String keyName = idToKeyName.get(id);
         piano.playKey(keyName, setting);
+        recorder.recordKeyPlayed(piano.getKey(keyName));
     }
     //highlight the key when it is played
     void highlightKey(String keyFxId){
@@ -353,4 +358,15 @@ public class Home {
         }
     }
 
+    public void handleButtonRecordToggle(ActionEvent actionEvent) {
+        if(recorder.getRecordingStatus()){
+            recorder.stopRecording();
+            ((Button)actionEvent.getSource()).setText("Start Recording");
+            recorder.getStepRecord().play();
+        }
+        else{
+            recorder.startRecording();
+            ((Button)actionEvent.getSource()).setText("Stop Recording");
+        }
+    }
 }
