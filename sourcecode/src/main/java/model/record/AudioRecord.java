@@ -25,4 +25,8 @@ public class AudioRecord extends Record {
     public void export(String path) {
         //TODO: export to wav
     }
+    @Override
+    public void importRecord(String path) throws Exception {
+        //TODO: import from wav
+    }
 }
