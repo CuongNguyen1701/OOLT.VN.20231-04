@@ -10,8 +10,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.MusicStyle;
 import model.Piano;
 import model.record.Recorder;
 import model.Setting;
@@ -23,16 +25,11 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class Home {
-    @FXML
-    private Pane pianoPane;
-
-    @FXML
-    private Slider volumeSlider;
-
-    @FXML
-    private Label labelImportRecord;
-    @FXML
-    private Button buttonPlayRecord;
+    @FXML private Pane pianoPane;
+    @FXML private Slider volumeSlider;
+    @FXML private Label labelImportRecord;
+    @FXML private Button buttonPlayRecord;
+    @FXML private VBox vboxMusicStyle;
     private Scene scene;
     Piano piano;
     Setting setting;
@@ -51,6 +48,7 @@ public class Home {
         initializePianoKeyMapping();
         piano.batchUpdateLastUsedPath(setting.getMusicStyle().getPath());
         this.recorder = new Recorder();
+        initializeMusicStyleToggleButtons();
         // volume indicator
         volumeSlider.setValue(setting.getVolume());
         setVolumeSliderFill(setting.getVolume());
@@ -69,6 +67,26 @@ public class Home {
                         "-default-track-color 100%%);",
                 percentage);
         volumeSlider.setStyle(style);
+    }
+    private void initializeMusicStyleToggleButtons() {
+        ToggleGroup musicStyleToggleGroup = new ToggleGroup();
+        boolean first = true;
+        for (String musicStyleName : Setting.VALID_MUSIC_STYLES) {
+            // capitalize the first letter of the music style name before displaying it
+            String musicStyleNameCapitalizedFirst = musicStyleName.substring(0, 1).toUpperCase() + musicStyleName.substring(1);
+            RadioButton musicStyleButton = new RadioButton(musicStyleNameCapitalizedFirst);
+            musicStyleButton.setToggleGroup(musicStyleToggleGroup);
+
+            // set the first music style as the default selected music style
+            musicStyleButton.setSelected(first);
+            musicStyleButton.setOnAction(event -> {
+                setting.setMusicStyle(new MusicStyle(musicStyleName));
+                // initialize the piano with the new music style
+                piano.batchUpdateLastUsedPath(setting.getMusicStyle().getPath());
+            });
+            first = false;
+            vboxMusicStyle.getChildren().add(musicStyleButton);
+        }
     }
     private ArrayList<String> getAllPianoKeyName() {
         String prefix = "key";
