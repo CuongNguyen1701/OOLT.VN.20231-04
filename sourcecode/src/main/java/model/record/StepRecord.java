@@ -1,4 +1,6 @@
-package model;
+package model.record;
+
+import model.Setting;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
