@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,15 +12,12 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import model.MusicStyle;
 import model.Piano;
-import model.Recorder;
+import model.record.Recorder;
 import model.Setting;
 
 import java.io.File;
-import java.io.PipedInputStream;
 import java.nio.file.Paths;
 import java.util.*;
 

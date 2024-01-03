@@ -1,4 +1,6 @@
-package model;
+package model.record;
+
+import model.PianoKey;
 
 public class PianoEvent {
     private PianoKey keyPressed;
