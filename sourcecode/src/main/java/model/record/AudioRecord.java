@@ -21,4 +21,8 @@ public class AudioRecord extends Record {
     public void stop() {
         mediaPlayer.stop();
     }
+    @Override
+    public void export(String path) {
+        //TODO: export to wav
+    }
 }
