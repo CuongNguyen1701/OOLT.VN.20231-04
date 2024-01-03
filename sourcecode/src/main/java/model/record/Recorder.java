@@ -9,6 +9,8 @@ public class Recorder {
     private boolean isRecording = false;
     private long lastKeyPlayedTime;
 
+    private Record record;
+
     public boolean getRecordingStatus() {
         return isRecording;
     }
@@ -34,11 +36,7 @@ public class Recorder {
     public void stopRecording(){
         isRecording = false;
         System.out.println("Recording stopped.");
-    }
-    public StepRecord getStepRecord(){
-        if (stepRecordBuffer.isEmpty())
-            return null;
-        return new StepRecord(stepRecordBuffer);
+        record = new StepRecord(stepRecordBuffer);
     }
 
 }
