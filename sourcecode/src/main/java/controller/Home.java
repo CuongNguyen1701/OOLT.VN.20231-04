@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -326,26 +327,29 @@ public class Home {
         recorder.recordKeyPlayed(piano.getKey(keyName));
     }
     //highlight the key when it is played
-    void highlightKey(String keyFxId){
+    void highlightKey(String keyFxId) {
         String style = "-fx-background-color: #ee1111;";
-        try{
+
+        try {
             pianoPane.lookup("#" + keyFxId).setStyle(style);
-            // remove the style after 0.1 second
-            Timer timer = new Timer();
-            timer.schedule(
-                new TimerTask() {
+
+
+            // Schedule the removal of style after 0.1 second
+            Platform.runLater(() -> {
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
                         pianoPane.lookup("#" + keyFxId).setStyle("");
                         timer.cancel();
                     }
-                },
-                100
-            );
-        }catch (NullPointerException e){
+                }, 100);
+            });
+        } catch (NullPointerException e) {
             System.out.println("Key not found");
         }
     }
+
     @FXML
     private void showAboutPopup() {
         try {
