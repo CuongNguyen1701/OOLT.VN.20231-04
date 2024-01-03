@@ -1,12 +1,11 @@
-package model;
+package model.record;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
-import java.nio.file.Paths;
 
-public class AudioRecord extends Record{
+public class AudioRecord extends Record {
     private final MediaPlayer mediaPlayer;
     public AudioRecord(String filename) {
         this.path = super.path + "\\audio_records\\" + filename + ".wav";
@@ -21,5 +20,13 @@ public class AudioRecord extends Record{
     @Override
     public void stop() {
         mediaPlayer.stop();
+    }
+    @Override
+    public void export(String path) {
+        //TODO: export to wav
+    }
+    @Override
+    public void importRecord(String path) throws Exception {
+        //TODO: import from wav
     }
 }

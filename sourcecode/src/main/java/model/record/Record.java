@@ -1,4 +1,4 @@
-package model;
+package model.record;
 
 import interfaces.Player;
 
@@ -10,4 +10,7 @@ public abstract class Record implements Player {
     public Record() {
 
     }
+    public void play(){}
+    public abstract void export(String path);
+    public abstract void importRecord(String path) throws Exception;
 }

@@ -1,26 +1,23 @@
 package controller;
 
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
-import javafx.scene.control.Slider;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.MusicStyle;
 import model.Piano;
+import model.record.Recorder;
 import model.Setting;
+import model.record.StepRecord;
+import model.record.Record;
 
 import java.io.File;
-import java.io.PipedInputStream;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -205,9 +202,16 @@ public class Home {
 
     @FXML
     private Slider volumeSlider;
+
+    @FXML
+    private Label labelImportRecord;
+    @FXML
+    private Button buttonPlayRecord;
     private Scene scene;
     Piano piano;
     Setting setting;
+    Recorder recorder;
+    Record record;
     // key fx:id to key name
     Map<String, String> idToKeyName = new HashMap<>();
     // keyboard's key code to fx:id
@@ -219,6 +223,7 @@ public class Home {
         this.piano = new Piano(pianoKeyNames);
         initializePianoKeyMapping();
         this.setting = new Setting();
+        this.recorder = new Recorder();
         // volume indicator
         volumeSlider.setValue(setting.getVolume());
         setVolumeSliderFill(setting.getVolume());
@@ -309,6 +314,7 @@ public class Home {
         int keyValue = event.getCharacter().charAt(0);
         highlightKey(keyCodeToId.get(keyValue));
         piano.playKey(keyValue, setting);
+        recorder.recordKeyPlayed(piano.getKey(keyValue));
     }
     @FXML
     void handlePianoKeyClick(ActionEvent event) {
@@ -316,6 +322,7 @@ public class Home {
         highlightKey(id);
         String keyName = idToKeyName.get(id);
         piano.playKey(keyName, setting);
+        recorder.recordKeyPlayed(piano.getKey(keyName));
     }
     //highlight the key when it is played
     void highlightKey(String keyFxId){
@@ -353,4 +360,62 @@ public class Home {
         }
     }
 
+    public void handleButtonRecordToggle(ActionEvent actionEvent) {
+        if(recorder.getRecordingStatus()){
+            recorder.stopRecording();
+            ((Button)actionEvent.getSource()).setText("Start Recording");
+            showExportPopup();
+        }
+        else{
+            recorder.startRecording();
+            ((Button)actionEvent.getSource()).setText("Stop Recording");
+        }
+    }
+    @FXML
+    private void showExportPopup() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Export.fxml"));
+            AnchorPane exportPane = fxmlLoader.load();
+            Export export = fxmlLoader.getController();
+            export.setRecord(recorder.getRecord());
+            Scene scene = new Scene(exportPane);
+            Stage stage = new Stage();
+            stage.setTitle("Export");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleImportRecord(ActionEvent actionEvent) {
+        FileChooser.ExtensionFilter extFilter;
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Destination");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("WAV files (*.wav)", "*.wav"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if(selectedFile == null)
+            return;
+        String filePath = selectedFile.getAbsolutePath();
+        //return if selected file is a directory
+        if(selectedFile.isDirectory())
+            return;
+        record = new StepRecord();
+        try {
+            record.importRecord(filePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        labelImportRecord.setText(selectedFile.getName());
+        labelImportRecord.setStyle("-fx-text-fill: #000000;");
+        buttonPlayRecord.setVisible(true);
+        buttonPlayRecord.setDisable(false);
+    }
+
+    public void handleButtonPlayRecord(ActionEvent actionEvent) {
+        if(record == null)
+            return;
+        record.play();
+    }
 }
