@@ -25,16 +25,21 @@ public class PianoKey implements Player {
         double volume = setting.getVolume() / 100.0;
         // only create a new MediaPlayer if the music style is different from the last used path
         if (!stylePath.equals(lastUsedPath)) {
-            lastUsedPath = stylePath;String path = stylePath + name + ".wav";
-            String soundPath = Paths.get("target","classes", path).toString();
-            Media sound = new Media(new File(soundPath).toURI().toString());
-            mediaPlayer = new MediaPlayer(sound);
+            lastUsedPath = stylePath;
+            reloadMediaPlayer();
         }
         mediaPlayer.setVolume(volume);
         play();
     }
-    void updateLastUsedPath(String path) {
-        lastUsedPath = path;
+    void updateLastUsedPath(String newPath) {
+        lastUsedPath = newPath;
+        reloadMediaPlayer();
+    }
+    private void reloadMediaPlayer() {
+        String path = lastUsedPath + name + ".wav";
+        String soundPath = Paths.get("target","classes", path).toString();
+        Media sound = new Media(new File(soundPath).toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
     }
     @Override
     public void play() {
