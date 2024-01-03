@@ -1,8 +1,11 @@
 package model.record;
 
+import model.PianoKey;
 import model.Setting;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,10 @@ import java.util.stream.Stream;
 public class StepRecord extends Record {
     ArrayList<PianoEvent> pianoEvents;
     ScheduledExecutorService scheduler;
+    public StepRecord() {
+        super();
+        pianoEvents = new ArrayList<>();
+    }
     public StepRecord(ArrayList<PianoEvent> pianoEvents) {
         super();
         this.pianoEvents = pianoEvents;
@@ -70,5 +77,23 @@ public class StepRecord extends Record {
     }
     private String convertToCSV(String[] data) {
         return String.join(",", data);
+    }
+    @Override public void importRecord(String path) throws Exception {
+        // read from csv file
+        List<String[]> dataLines = new ArrayList<>();
+        try(BufferedReader br = new BufferedReader(new FileReader(path))){
+            String line;
+            while((line = br.readLine()) != null){
+                String[] data = line.split(",");
+                dataLines.add(data);
+            }
+        }
+        // convert to piano events
+        pianoEvents = new ArrayList<>();
+        for (String[] dataLine : dataLines) {
+            PianoKey pianoKey = new PianoKey(dataLine[0]);
+            int interval = Integer.parseInt(dataLine[1]);
+            pianoEvents.add(new PianoEvent(pianoKey, interval));
+        }
     }
 }
