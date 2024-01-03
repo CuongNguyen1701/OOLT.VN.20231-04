@@ -34,11 +34,18 @@ public class Export {
     private File selectedFile;
     @FXML
     void handleBrowse(ActionEvent event) {
-        if(!(record instanceof StepRecord || record instanceof AudioRecord))
+        FileChooser.ExtensionFilter extFilter;
+        if(record instanceof StepRecord){
+            extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+        }
+        else if(record instanceof AudioRecord){
+            extFilter = new FileChooser.ExtensionFilter("WAV files (*.wav)", "*.wav");
+        }
+        else{
             return;
+        }
         // Show file chooser
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv", "*.wav");
         fileChooser.getExtensionFilters().add(extFilter);
         fileChooser.setTitle("Select Destination");
         selectedFile = fileChooser.showSaveDialog(null);
