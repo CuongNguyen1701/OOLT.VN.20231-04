@@ -10,4 +10,5 @@ public abstract class Record implements Player {
     public Record() {
 
     }
+    public abstract void export(String path);
 }

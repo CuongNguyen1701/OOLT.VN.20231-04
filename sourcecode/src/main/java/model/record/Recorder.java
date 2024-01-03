@@ -2,6 +2,8 @@ package model.record;
 
 import model.PianoKey;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Recorder {
@@ -38,5 +40,7 @@ public class Recorder {
         System.out.println("Recording stopped.");
         record = new StepRecord(stepRecordBuffer);
     }
-
+    public Record getRecord(){
+        return record;
+    }
 }
