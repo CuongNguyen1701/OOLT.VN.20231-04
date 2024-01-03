@@ -15,6 +15,7 @@ public class Recorder {
         stepRecordBuffer.clear();
         lastKeyPlayedTime = System.currentTimeMillis();
         isRecording = true;
+        System.out.println("Recording...");
     }
     public void recordKeyPlayed(PianoKey pianoKey){
         if(!isRecording)
@@ -30,9 +31,8 @@ public class Recorder {
     }
     public void stopRecording(){
         isRecording = false;
-        for(PianoEvent pianoEvent : stepRecordBuffer){
-            System.out.println(pianoEvent.getKeyPressed().getName() + ": " + pianoEvent.getInterval() + "ms");
-        }
+        System.out.println(new StepRecord(stepRecordBuffer));
+        System.out.println("Recording stopped.");
     }
     public StepRecord getStepRecord(){
         if (stepRecordBuffer == null)
