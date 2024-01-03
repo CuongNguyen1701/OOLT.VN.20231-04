@@ -33,11 +33,10 @@ public class Recorder {
     }
     public void stopRecording(){
         isRecording = false;
-        System.out.println(new StepRecord(stepRecordBuffer));
         System.out.println("Recording stopped.");
     }
     public StepRecord getStepRecord(){
-        if (stepRecordBuffer == null)
+        if (stepRecordBuffer.isEmpty())
             return null;
         return new StepRecord(stepRecordBuffer);
     }
