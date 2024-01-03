@@ -13,8 +13,7 @@ public class AudioRecord extends Record {
         mediaPlayer = new MediaPlayer(sound);
     }
     @Override
-    public void play(String filepath, double volume) {
-        mediaPlayer.setVolume(volume);
+    public void play() {
         mediaPlayer.play();
     }
     @Override

@@ -26,10 +26,7 @@ public class StepRecord extends Record {
         super();
         this.pianoEvents = pianoEvents;
     }
-    public void play(){
-        play(path, 1);
-    }
-    @Override public void play(String filepath, double volume) {
+    @Override public void play() {
         Setting setting = new Setting();
         scheduler = Executors.newSingleThreadScheduledExecutor();
         long delay = 0; // Initial delay

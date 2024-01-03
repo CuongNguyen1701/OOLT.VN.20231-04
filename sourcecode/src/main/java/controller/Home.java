@@ -220,9 +220,10 @@ public class Home {
     private void initialize() {
         // create piano
         ArrayList<String> pianoKeyNames = getAllPianoKeyName();
+        this.setting = new Setting();
         this.piano = new Piano(pianoKeyNames);
         initializePianoKeyMapping();
-        this.setting = new Setting();
+        piano.batchUpdateLastUsedPath(setting.getMusicStyle().getPath());
         this.recorder = new Recorder();
         // volume indicator
         volumeSlider.setValue(setting.getVolume());

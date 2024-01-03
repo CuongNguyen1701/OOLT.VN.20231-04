@@ -49,5 +49,10 @@ public class Piano {
             pianoKey.play(setting);
         }
     }
+    public void batchUpdateLastUsedPath(String path) {
+        for (PianoKey pianoKey : keyMap.values()) {
+            pianoKey.updateLastUsedPath(path);
+        }
+    }
 
 }

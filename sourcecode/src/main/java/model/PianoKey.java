@@ -11,6 +11,9 @@ import java.nio.file.Paths;
 
 public class PianoKey implements Player {
     private final String name;
+    private MediaPlayer mediaPlayer;
+    private String lastUsedPath;
+
     public PianoKey(String name) {
         this.name = name;
     }
@@ -18,17 +21,30 @@ public class PianoKey implements Player {
         return name;
     }
     public void play(Setting setting) {
-        String path = setting.getMusicStyle().getPath() + name + ".wav";
+        String stylePath = setting.getMusicStyle().getPath();
         double volume = setting.getVolume() / 100.0;
-        play(path, volume);
+        // only create a new MediaPlayer if the music style is different from the last used path
+        if (!stylePath.equals(lastUsedPath)) {
+            lastUsedPath = stylePath;
+            reloadMediaPlayer();
+        }
+        mediaPlayer.setVolume(volume);
+        play();
+    }
+    void updateLastUsedPath(String newPath) {
+        lastUsedPath = newPath;
+        reloadMediaPlayer();
+    }
+    private void reloadMediaPlayer() {
+        String path = lastUsedPath + name + ".wav";
+        String soundPath = Paths.get("target","classes", path).toString();
+        Media sound = new Media(new File(soundPath).toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
     }
     @Override
-    public void play(String filepath, double volume) {
-        String soundPath = Paths.get("target","classes", filepath).toString();
-        Media sound = new Media(new File(soundPath).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.setVolume(volume);
+    public void play() {
         mediaPlayer.play();
+        mediaPlayer.seek(mediaPlayer.getStartTime());
     }
     @Override
     public void stop() {
