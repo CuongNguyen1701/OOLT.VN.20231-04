@@ -13,4 +13,8 @@ public class PianoEvent {
     public int getInterval() {
         return interval;
     }
+    @Override
+    public String toString() {
+        return keyPressed.getName() + ": " + interval + "ms";
+    }
 }
