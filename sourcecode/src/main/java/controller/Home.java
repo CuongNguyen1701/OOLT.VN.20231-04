@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,8 +10,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.MusicStyle;
 import model.Piano;
 import model.record.Recorder;
 import model.Setting;
@@ -22,191 +25,11 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class Home {
-
-    @FXML
-    private Menu aboutMenu;
-
-    @FXML
-    private Menu helpMenu;
-
-    @FXML
-    private Button key001;
-
-    @FXML
-    private Button key002;
-
-    @FXML
-    private Button key003;
-
-    @FXML
-    private Button key004;
-
-    @FXML
-    private Button key005;
-
-    @FXML
-    private Button key006;
-
-    @FXML
-    private Button key007;
-
-    @FXML
-    private Button key008;
-
-    @FXML
-    private Button key009;
-
-    @FXML
-    private Button key010;
-
-    @FXML
-    private Button key011;
-
-    @FXML
-    private Button key012;
-
-    @FXML
-    private Button key013;
-
-    @FXML
-    private Button key014;
-
-    @FXML
-    private Button key015;
-
-    @FXML
-    private Button key016;
-
-    @FXML
-    private Button key017;
-
-    @FXML
-    private Button key018;
-
-    @FXML
-    private Button key019;
-
-    @FXML
-    private Button key020;
-
-    @FXML
-    private Button key021;
-
-    @FXML
-    private Button key022;
-
-    @FXML
-    private Button key023;
-
-    @FXML
-    private Button key024;
-
-    @FXML
-    private Button key025;
-
-    @FXML
-    private Button key026;
-
-    @FXML
-    private Button key027;
-
-    @FXML
-    private Button key028;
-
-    @FXML
-    private Button key029;
-
-    @FXML
-    private Button key030;
-
-    @FXML
-    private Button key031;
-
-    @FXML
-    private Button key032;
-
-    @FXML
-    private Button key033;
-
-    @FXML
-    private Button key034;
-
-    @FXML
-    private Button key035;
-
-    @FXML
-    private Button key036;
-
-    @FXML
-    private Button key037;
-
-    @FXML
-    private Button key038;
-
-    @FXML
-    private Button key039;
-
-    @FXML
-    private Button key040;
-
-    @FXML
-    private Button key041;
-
-    @FXML
-    private Button key042;
-
-    @FXML
-    private Button key043;
-
-    @FXML
-    private Button key044;
-
-    @FXML
-    private Button key045;
-
-    @FXML
-    private Button key046;
-
-    @FXML
-    private Button key047;
-
-    @FXML
-    private Button key048;
-
-    @FXML
-    private Button key049;
-
-    @FXML
-    private Button key050;
-
-    @FXML
-    private Button key051;
-
-    @FXML
-    private Button key052;
-
-    @FXML
-    private Button key053;
-
-    @FXML
-    private Button key054;
-
-    @FXML
-    private Button key055;
-
-    @FXML
-    private ToggleGroup musicStyleToggle;
-
-    @FXML
-    private Pane pianoPane;
-
-    @FXML
-    private Slider volumeSlider;
-
-    @FXML
-    private Label labelImportRecord;
-    @FXML
-    private Button buttonPlayRecord;
+    @FXML private Pane pianoPane;
+    @FXML private Slider volumeSlider;
+    @FXML private Label labelImportRecord;
+    @FXML private Button buttonPlayRecord;
+    @FXML private VBox vboxMusicStyle;
     private Scene scene;
     Piano piano;
     Setting setting;
@@ -225,6 +48,7 @@ public class Home {
         initializePianoKeyMapping();
         piano.batchUpdateLastUsedPath(setting.getMusicStyle().getPath());
         this.recorder = new Recorder();
+        initializeMusicStyleToggleButtons();
         // volume indicator
         volumeSlider.setValue(setting.getVolume());
         setVolumeSliderFill(setting.getVolume());
@@ -243,6 +67,26 @@ public class Home {
                         "-default-track-color 100%%);",
                 percentage);
         volumeSlider.setStyle(style);
+    }
+    private void initializeMusicStyleToggleButtons() {
+        ToggleGroup musicStyleToggleGroup = new ToggleGroup();
+        boolean first = true;
+        for (String musicStyleName : Setting.VALID_MUSIC_STYLES) {
+            // capitalize the first letter of the music style name before displaying it
+            String musicStyleNameCapitalizedFirst = musicStyleName.substring(0, 1).toUpperCase() + musicStyleName.substring(1);
+            RadioButton musicStyleButton = new RadioButton(musicStyleNameCapitalizedFirst);
+            musicStyleButton.setToggleGroup(musicStyleToggleGroup);
+
+            // set the first music style as the default selected music style
+            musicStyleButton.setSelected(first);
+            musicStyleButton.setOnAction(event -> {
+                setting.setMusicStyle(new MusicStyle(musicStyleName));
+                // initialize the piano with the new music style
+                piano.batchUpdateLastUsedPath(setting.getMusicStyle().getPath());
+            });
+            first = false;
+            vboxMusicStyle.getChildren().add(musicStyleButton);
+        }
     }
     private ArrayList<String> getAllPianoKeyName() {
         String prefix = "key";
@@ -326,26 +170,29 @@ public class Home {
         recorder.recordKeyPlayed(piano.getKey(keyName));
     }
     //highlight the key when it is played
-    void highlightKey(String keyFxId){
+    void highlightKey(String keyFxId) {
         String style = "-fx-background-color: #ee1111;";
-        try{
+
+        try {
             pianoPane.lookup("#" + keyFxId).setStyle(style);
-            // remove the style after 0.1 second
-            Timer timer = new Timer();
-            timer.schedule(
-                new TimerTask() {
+
+
+            // Schedule the removal of style after 0.1 second
+            Platform.runLater(() -> {
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
                         pianoPane.lookup("#" + keyFxId).setStyle("");
                         timer.cancel();
                     }
-                },
-                100
-            );
-        }catch (NullPointerException e){
+                }, 100);
+            });
+        } catch (NullPointerException e) {
             System.out.println("Key not found");
         }
     }
+
     @FXML
     private void showAboutPopup() {
         try {

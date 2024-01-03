@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Setting {
-    private static final ArrayList<String> VALID_MUSIC_STYLES = new ArrayList<String>() {{
+    public static final ArrayList<String> VALID_MUSIC_STYLES = new ArrayList<String>() {{
         add("acoustic");
     }};
     private int volume = 50;
