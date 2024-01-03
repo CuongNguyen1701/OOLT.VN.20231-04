@@ -358,10 +358,28 @@ public class Home {
         if(recorder.getRecordingStatus()){
             recorder.stopRecording();
             ((Button)actionEvent.getSource()).setText("Start Recording");
+            showExportPopup();
         }
         else{
             recorder.startRecording();
             ((Button)actionEvent.getSource()).setText("Stop Recording");
         }
     }
+    @FXML
+    private void showExportPopup() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Export.fxml"));
+            AnchorPane exportPane = fxmlLoader.load();
+            Export export = fxmlLoader.getController();
+            export.setRecord(recorder.getRecord());
+            Scene scene = new Scene(exportPane);
+            Stage stage = new Stage();
+            stage.setTitle("Export");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
