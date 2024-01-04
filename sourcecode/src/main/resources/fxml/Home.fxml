@@ -207,7 +207,7 @@
                   </items></Menu>
                <Menu fx:id="helpMenu" mnemonicParsing="false">
                   <graphic>
-                     <Label onMouseClicked="#showAboutPopup" text="Help" />
+                     <Label onMouseClicked="#showHelpPopup" text="Help" />
                   </graphic>
                </Menu>
                <Menu fx:id="aboutMenu" mnemonicParsing="false">

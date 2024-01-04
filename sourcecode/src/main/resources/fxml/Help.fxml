@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Help">
+   <children>
+      <AnchorPane fx:id="pane1" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="180.0" fitWidth="320.0" layoutX="240.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="20.0">
+               <image>
+                  <Image url="@../images/banner.jpg" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="tutorialText1" prefHeight="150.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane2" layoutX="829.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="180.0" fitWidth="320.0" layoutX="240.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="20.0">
+               <image>
+                  <Image url="@../images/banner.jpg" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="tutorialText11" prefHeight="150.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane3" layoutX="829.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="180.0" fitWidth="320.0" layoutX="240.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="20.0">
+               <image>
+                  <Image url="@../images/banner.jpg" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="tutorialText111" prefHeight="150.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="num" layoutX="400.0" layoutY="400.0" text="1/3" textFill="#a19e9e">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button mnemonicParsing="false" onAction="#back" text="&lt;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button layoutX="60.0" layoutY="399.0" mnemonicParsing="false" onAction="#next" text="&gt;" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

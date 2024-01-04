@@ -222,6 +222,21 @@ public class Home {
         }
     }
 
+    @FXML
+    private void showHelpPopup() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Help.fxml"));
+            AnchorPane aboutPane = fxmlLoader.load();
+            Scene scene = new Scene(aboutPane);
+            Stage stage = new Stage();
+            stage.setTitle("Help");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void handleButtonRecordToggle(ActionEvent actionEvent) {
         if(recorder.getRecordingStatus()){
             recorder.stopRecording();
