@@ -163,11 +163,12 @@ public class Home {
     }
     private void initializePianoKeyBinding() {
         for (String pianoKeyId : idToKeyName.keySet()) {
-            PianoKey pianoKey = piano.getKey(idToKeyName.get(pianoKeyId));
-            // Register a callback for highlighting
+            String keyName = idToKeyName.get(pianoKeyId);
+            PianoKey pianoKey = piano.getKey(keyName);
+            // Register a callback for highlighting and recording
             pianoKey.addPlayCallback(() -> {
                 highlightKey(pianoKeyId);
-                System.out.println("Highlighting key: " + pianoKeyId);
+                recorder.recordKeyPlayed(piano.getKey(keyName));
             });
         }
     }
@@ -176,14 +177,12 @@ public class Home {
     @FXML void handleKeyTyped(KeyEvent event){
         int keyValue = event.getCharacter().charAt(0);
         piano.playKey(keyValue, setting);
-        recorder.recordKeyPlayed(piano.getKey(keyValue));
     }
     @FXML
     void handlePianoKeyClick(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();
         String keyName = idToKeyName.get(id);
         piano.playKey(keyName, setting);
-        recorder.recordKeyPlayed(piano.getKey(keyName));
     }
     //highlight the key when it is played
     void highlightKey(String keyFxId) {
