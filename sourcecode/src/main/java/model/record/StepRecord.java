@@ -1,5 +1,6 @@
 package model.record;
 
+import model.Piano;
 import model.PianoKey;
 import model.Setting;
 
@@ -75,7 +76,7 @@ public class StepRecord extends Record {
     private String convertToCSV(String[] data) {
         return String.join(",", data);
     }
-    @Override public void importRecord(String path) throws Exception {
+    @Override public void importRecord(String path, Piano piano) throws Exception {
         // read from csv file
         List<String[]> dataLines = new ArrayList<>();
         try(BufferedReader br = new BufferedReader(new FileReader(path))){
@@ -88,9 +89,9 @@ public class StepRecord extends Record {
         // convert to piano events
         pianoEvents = new ArrayList<>();
         for (String[] dataLine : dataLines) {
-            PianoKey pianoKey = new PianoKey(dataLine[0]);
+            String pianoKeyName = dataLine[0];
             int interval = Integer.parseInt(dataLine[1]);
-            pianoEvents.add(new PianoEvent(pianoKey, interval));
+            pianoEvents.add(new PianoEvent(piano.getKey(pianoKeyName), interval));
         }
     }
 }

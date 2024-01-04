@@ -1,6 +1,7 @@
 package model.record;
 
 import interfaces.Player;
+import model.Piano;
 
 import java.nio.file.Paths;
 
@@ -12,5 +13,5 @@ public abstract class Record implements Player {
     }
     public void play(){}
     public abstract void export(String path);
-    public abstract void importRecord(String path) throws Exception;
+    public abstract void importRecord(String path, Piano piano) throws Exception;
 }

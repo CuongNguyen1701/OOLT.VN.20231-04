@@ -266,7 +266,7 @@ public class Home {
             return;
         record = new StepRecord();
         try {
-            record.importRecord(filePath);
+            record.importRecord(filePath, piano);
         } catch (Exception e) {
             e.printStackTrace();
         }
