@@ -35,6 +35,8 @@ public class Home {
     @FXML private Label labelImportRecord;
     @FXML private Button buttonPlayRecord;
     @FXML private VBox vboxMusicStyle;
+    @FXML private ToggleButton buttonKeyboard;
+    @FXML private AnchorPane keyboardParent;
     private Scene scene;
     Piano piano;
     Setting setting;
@@ -63,6 +65,9 @@ public class Home {
             setting.updateVolume(newValue.intValue());
             setVolumeSliderFill(percentage);
         });
+
+        buttonKeyboard.setText("KeyBoard:On");
+        keyboardParent.setVisible(true);
     }
     void setVolumeSliderFill(double percentage){
         String style = String.format(
@@ -222,6 +227,21 @@ public class Home {
         }
     }
 
+    @FXML
+    private void showHelpPopup() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Help.fxml"));
+            AnchorPane aboutPane = fxmlLoader.load();
+            Scene scene = new Scene(aboutPane);
+            Stage stage = new Stage();
+            stage.setTitle("Help");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void handleButtonRecordToggle(ActionEvent actionEvent) {
         if(recorder.getRecordingStatus()){
             recorder.stopRecording();
@@ -279,5 +299,17 @@ public class Home {
         if(record == null)
             return;
         record.play();
+    }
+    boolean keyboardOn = true;
+
+    @FXML
+    void handleButtonKeyboardOnClick(ActionEvent actionEvent){
+        keyboardOn = !keyboardOn;
+        keyboardParent.setVisible(keyboardOn);
+
+        if(keyboardOn)
+            buttonKeyboard.setText("Keyboard:On");
+        else
+            buttonKeyboard.setText("Keyboard:Off");
     }
 }
