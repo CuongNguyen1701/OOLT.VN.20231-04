@@ -185,7 +185,7 @@
                            <Font size="9.0" />
                         </font>
                      </Button>
-                     <AnchorPane fx:id="keyboardParent" prefHeight="230.4" prefWidth="1160.0">
+                     <AnchorPane fx:id="keyHintParent" prefHeight="230.4" prefWidth="1160.0">
                         <children>
                            <Text layoutX="25.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="q" textAlignment="CENTER">
                               <font>
@@ -534,7 +534,7 @@
                </VBox>
                <VBox prefHeight="200.0" prefWidth="100.0">
                   <children>
-                     <ToggleButton fx:id="buttonKeyboard" mnemonicParsing="false" onAction="#handleButtonKeyboardOnClick" text="Keyboard : Off" textAlignment="CENTER">
+                     <ToggleButton fx:id="buttonKeyHint" mnemonicParsing="false" onAction="#handleButtonKeyHintOnClick" text="KeyHint : Off" textAlignment="CENTER">
                         <VBox.margin>
                            <Insets left="5.0" />
                         </VBox.margin>

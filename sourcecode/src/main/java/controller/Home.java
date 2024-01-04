@@ -35,8 +35,8 @@ public class Home {
     @FXML private Label labelImportRecord;
     @FXML private Button buttonPlayRecord;
     @FXML private VBox vboxMusicStyle;
-    @FXML private ToggleButton buttonKeyboard;
-    @FXML private AnchorPane keyboardParent;
+    @FXML private ToggleButton buttonKeyHint;
+    @FXML private AnchorPane keyHintParent;
     private Scene scene;
     Piano piano;
     Setting setting;
@@ -66,8 +66,8 @@ public class Home {
             setVolumeSliderFill(percentage);
         });
 
-        buttonKeyboard.setText("KeyBoard:On");
-        keyboardParent.setVisible(true);
+        buttonKeyHint.setText("KeyHint:Off");
+        keyHintParent.setVisible(false);
     }
     void setVolumeSliderFill(double percentage){
         String style = String.format(
@@ -300,16 +300,16 @@ public class Home {
             return;
         record.play();
     }
-    boolean keyboardOn = true;
+    boolean keyHintOn = false;
 
     @FXML
-    void handleButtonKeyboardOnClick(ActionEvent actionEvent){
-        keyboardOn = !keyboardOn;
-        keyboardParent.setVisible(keyboardOn);
+    void handleButtonKeyHintOnClick(ActionEvent actionEvent){
+        keyHintOn = !keyHintOn;
+        keyHintParent.setVisible(keyHintOn);
 
-        if(keyboardOn)
-            buttonKeyboard.setText("Keyboard:On");
+        if(keyHintOn)
+            buttonKeyHint.setText("KeyHint:On");
         else
-            buttonKeyboard.setText("Keyboard:Off");
+            buttonKeyHint.setText("KeyHint:Off");
     }
 }
