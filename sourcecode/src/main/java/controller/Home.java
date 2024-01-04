@@ -1,6 +1,9 @@
 package controller;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +16,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.MusicStyle;
 import model.Piano;
+import model.PianoKey;
 import model.record.Recorder;
 import model.Setting;
 import model.record.StepRecord;
@@ -47,6 +52,7 @@ public class Home {
         this.piano = new Piano(pianoKeyNames);
         initializePianoKeyMapping();
         piano.batchUpdateLastUsedPath(setting.getMusicStyle().getPath());
+        initializePianoKeyBinding();
         this.recorder = new Recorder();
         initializeMusicStyleToggleButtons();
         // volume indicator
@@ -155,16 +161,26 @@ public class Home {
             keyCodeToId.put((int)keyNamesMinorNotes[i - keyNamesMajorNotes.length], keyIdPrefix + keyId);
         }
     }
+    private void initializePianoKeyBinding() {
+        for (String pianoKeyId : idToKeyName.keySet()) {
+            PianoKey pianoKey = piano.getKey(idToKeyName.get(pianoKeyId));
+            // Register a callback for highlighting
+            pianoKey.addPlayCallback(() -> {
+                highlightKey(pianoKeyId);
+                System.out.println("Highlighting key: " + pianoKeyId);
+            });
+        }
+    }
+
+
     @FXML void handleKeyTyped(KeyEvent event){
         int keyValue = event.getCharacter().charAt(0);
-        highlightKey(keyCodeToId.get(keyValue));
         piano.playKey(keyValue, setting);
         recorder.recordKeyPlayed(piano.getKey(keyValue));
     }
     @FXML
     void handlePianoKeyClick(ActionEvent event) {
         String id = ((Button) event.getSource()).getId();
-        highlightKey(id);
         String keyName = idToKeyName.get(id);
         piano.playKey(keyName, setting);
         recorder.recordKeyPlayed(piano.getKey(keyName));
@@ -174,24 +190,23 @@ public class Home {
         String style = "-fx-background-color: #ee1111;";
 
         try {
-            pianoPane.lookup("#" + keyFxId).setStyle(style);
+            Node keyNode = pianoPane.lookup("#" + keyFxId);
 
+            if (keyNode != null) {
+                keyNode.setStyle(style);
 
-            // Schedule the removal of style after 0.1 second
-            Platform.runLater(() -> {
-                Timer timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        pianoPane.lookup("#" + keyFxId).setStyle("");
-                        timer.cancel();
-                    }
-                }, 100);
-            });
+                // Schedule the removal of style after 0.1 second
+                PauseTransition pause = new PauseTransition(Duration.millis(100));
+                pause.setOnFinished(event -> keyNode.setStyle(""));
+                pause.play();
+            } else {
+                System.out.println("Key not found");
+            }
         } catch (NullPointerException e) {
-            System.out.println("Key not found");
+            System.out.println("Error highlighting key: " + e.getMessage());
         }
     }
+
 
     @FXML
     private void showAboutPopup() {
