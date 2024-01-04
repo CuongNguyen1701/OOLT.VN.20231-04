@@ -6,6 +6,7 @@ public class Setting {
     public static final ArrayList<String> VALID_MUSIC_STYLES = new ArrayList<String>() {{
         add("acoustic");
         add("organs");
+        add("koto");
     }};
     private int volume = 50;
 
