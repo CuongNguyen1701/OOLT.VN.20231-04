@@ -4,6 +4,7 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -16,6 +17,11 @@ import java.util.Scanner;
 public class Help {
     @FXML
     private Label num;
+
+    @FXML
+    private Button buttonBack;
+    @FXML
+    private Button buttonNext;
 
     @FXML
     private AnchorPane pane1;
@@ -40,6 +46,9 @@ public class Help {
         initText(tutorialText1,"../texts/tutorial1.txt");
         initText(tutorialText2,"../texts/tutorial2.txt");
         initText(tutorialText3,"../texts/tutorial3.txt");
+
+        buttonBack.setDisable(true);
+        buttonNext.setDisable(false);
     }
 
     public void translateAnimation(double duration, Node node, double width){
@@ -53,10 +62,12 @@ public class Help {
 
     @FXML
     void back(ActionEvent event) {
+        buttonNext.setDisable(false);
         if(show == 1){
             translateAnimation(0.5,pane2,829);
             show--;
             num.setText("1/3");
+            buttonBack.setDisable(true);
         } else if (show ==2) {
             translateAnimation(0.5,pane3,829);
             show--;
@@ -66,6 +77,7 @@ public class Help {
 
     @FXML
     void next(ActionEvent event) {
+        buttonBack.setDisable(false);
         if(show == 0){
             translateAnimation(0.5,pane2,-829);
             show++;
@@ -74,6 +86,7 @@ public class Help {
             translateAnimation(0.5,pane3,-829);
             show++;
             num.setText("3/3");
+            buttonNext.setDisable(true);
         }
     }
 
