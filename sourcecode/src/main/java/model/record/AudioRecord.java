@@ -2,6 +2,7 @@ package model.record;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import model.Piano;
 
 import java.io.File;
 
@@ -25,7 +26,7 @@ public class AudioRecord extends Record {
         //TODO: export to wav
     }
     @Override
-    public void importRecord(String path) throws Exception {
+    public void importRecord(String path, Piano piano) throws Exception {
         //TODO: import from wav
     }
 }

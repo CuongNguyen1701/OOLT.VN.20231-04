@@ -2,18 +2,27 @@ package model;
 
 import interfaces.Player;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PianoKey implements Player {
     private final String name;
     private MediaPlayer mediaPlayer;
     private String lastUsedPath;
 
+    private List<Runnable> playCallbacks = new ArrayList<>();
+    // Method to register callback when the key is played
+    public void addPlayCallback(Runnable callback) {
+        playCallbacks.add(callback);
+    }
     public PianoKey(String name) {
         this.name = name;
     }
@@ -43,6 +52,7 @@ public class PianoKey implements Player {
     }
     @Override
     public void play() {
+        playCallbacks.forEach(Runnable::run);
         mediaPlayer.play();
         mediaPlayer.seek(mediaPlayer.getStartTime());
     }
