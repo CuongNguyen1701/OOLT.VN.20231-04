@@ -8,51 +8,111 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="491.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Help">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Help">
    <children>
       <AnchorPane fx:id="pane1" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="180.0" fitWidth="320.0" layoutX="240.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="20.0">
+            <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
                <image>
-                  <Image url="@../images/banner.jpg" />
+                  <Image url="@../images/help_menu/bg.png" />
                </image>
             </ImageView>
-            <TextFlow fx:id="tutorialText1" prefHeight="150.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+            <ImageView fitHeight="352.5" fitWidth="633.0" layoutX="183.5" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../images/help_menu/1_overview.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="tutorialText1" prefHeight="150.0" prefWidth="500.0" textAlignment="CENTER" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane2" layoutX="829.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="pane2" layoutX="1000.0" prefHeight="200.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="180.0" fitWidth="320.0" layoutX="240.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="20.0">
+            <ImageView fitHeight="600.0" fitWidth="800.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../images/banner.jpg" />
+                  <Image url="@../images/help_menu/bg.png" />
                </image>
             </ImageView>
-            <TextFlow fx:id="tutorialText11" prefHeight="150.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+            <ImageView fitHeight="352.5" fitWidth="633.0" layoutX="183.5" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../images/help_menu/2_mouseclick.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="tutorialText2" prefHeight="150.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane3" layoutX="829.0" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="pane3" layoutX="1000.0" prefHeight="200.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="180.0" fitWidth="320.0" layoutX="240.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="20.0">
+            <ImageView fitHeight="600.0" fitWidth="800.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../images/banner.jpg" />
+                  <Image url="@../images/help_menu/bg.png" />
                </image>
             </ImageView>
-            <TextFlow fx:id="tutorialText111" prefHeight="150.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+            <ImageView fitHeight="352.5" fitWidth="633.0" layoutX="183.5" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../images/help_menu/3_keypress.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="tutorialText3" prefHeight="150.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
          </children>
       </AnchorPane>
-      <Label fx:id="num" layoutX="400.0" layoutY="400.0" text="1/3" textFill="#a19e9e">
+      <AnchorPane fx:id="pane4" layoutX="1000.0" prefHeight="200.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="800.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/help_menu/bg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="352.5" fitWidth="633.0" layoutX="183.5" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../images/help_menu/4_keymap.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="tutorialText4" prefHeight="150.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane5" layoutX="1000.0" prefHeight="200.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="800.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/help_menu/bg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="352.5" fitWidth="633.0" layoutX="183.5" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../images/help_menu/5_record_and_export.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="tutorialText5" prefHeight="150.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pane6" layoutX="1000.0" prefHeight="200.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="800.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/help_menu/bg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="352.5" fitWidth="633.0" layoutX="183.5" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
+               <image>
+                  <Image url="@../images/help_menu/6_import.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="tutorialText6" prefHeight="150.0" prefWidth="400.0" textAlignment="CENTER" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="num" text="1/6" textFill="#a19e9e" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="500.0">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="buttonBack" mnemonicParsing="false" onAction="#back" text="&lt;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
+      <Button fx:id="buttonBack" layoutY="240.0" mnemonicParsing="false" onAction="#back" prefHeight="120.0" prefWidth="50.0" text="&lt;">
          <font>
-            <Font size="25.0" />
+            <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="buttonNext" layoutX="60.0" layoutY="399.0" mnemonicParsing="false" onAction="#next" text="&gt;" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+      <Button fx:id="buttonNext" layoutY="240.0" mnemonicParsing="false" onAction="#next" prefHeight="120.0" prefWidth="50.0" text="&gt;" AnchorPane.rightAnchor="0.0">
          <font>
-            <Font size="25.0" />
+            <Font size="20.0" />
          </font>
       </Button>
    </children>

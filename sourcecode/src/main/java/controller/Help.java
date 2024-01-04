@@ -12,6 +12,8 @@ import  javafx.util.Duration;
 import javafx.scene.text.TextFlow;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Help {
@@ -24,34 +26,33 @@ public class Help {
     private Button buttonNext;
 
     @FXML
-    private AnchorPane pane1;
+    private List<AnchorPane> panes = new ArrayList<>();
 
     @FXML
-    private TextFlow tutorialText1;
+    private List<TextFlow> textFlows = new ArrayList<>();
 
     @FXML
-    private AnchorPane pane2;
-
-    @FXML
-    private TextFlow tutorialText2;
-
-    @FXML
-    private AnchorPane pane3;
-
-    @FXML
-    private TextFlow tutorialText3;
+    private AnchorPane root;
 
     @FXML
     private void initialize(){
-        initText(tutorialText1,"../texts/tutorial1.txt");
-        initText(tutorialText2,"../texts/tutorial2.txt");
-        initText(tutorialText3,"../texts/tutorial3.txt");
+        for(Node child: root.getChildren()){
+            if(child instanceof AnchorPane pane){
+                panes.add(pane);
+            }
+        }
+
+        for (int i = 0; i < panes.size();i++){
+            String path = "../texts/help_menu/" + (i+1) + ".txt";
+            if(panes.get(i).getChildren().get(2) instanceof TextFlow textFlow)
+                initText(textFlow,path);
+        }
 
         buttonBack.setDisable(true);
         buttonNext.setDisable(false);
     }
 
-    public void translateAnimation(double duration, Node node, double width){
+    public void translateAnimation(double duration, Node node, double width, boolean isNext){
         TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(duration), node);
         translateTransition.setByX(width);
         translateTransition.play();
@@ -63,31 +64,21 @@ public class Help {
     @FXML
     void back(ActionEvent event) {
         buttonNext.setDisable(false);
-        if(show == 1){
-            translateAnimation(0.5,pane2,829);
-            show--;
-            num.setText("1/3");
-            buttonBack.setDisable(true);
-        } else if (show ==2) {
-            translateAnimation(0.5,pane3,829);
-            show--;
-            num.setText("2/3");
-        }
+        if(show <= 0)   return;
+        translateAnimation(0.5,panes.get(show),1000, false);
+        show--;
+        num.setText(show + 1 +"/6");
+        buttonBack.setDisable(show<=0);
     }
 
     @FXML
     void next(ActionEvent event) {
         buttonBack.setDisable(false);
-        if(show == 0){
-            translateAnimation(0.5,pane2,-829);
-            show++;
-            num.setText("2/3");
-        } else if (show ==1) {
-            translateAnimation(0.5,pane3,-829);
-            show++;
-            num.setText("3/3");
-            buttonNext.setDisable(true);
-        }
+        if(show >= 5)   return;
+        translateAnimation(0.5,panes.get(show+1),-1000,true);
+        show++;
+        num.setText(show+1+"/6");
+        buttonNext.setDisable(show >=5);
     }
 
     private void initText(TextFlow textFlow, String path){
