@@ -1,0 +1,3 @@
+Record and Export:
+A piano play can be recorded and then exported into a .csv file
+The .csv file can then be imported and played (see the next section)

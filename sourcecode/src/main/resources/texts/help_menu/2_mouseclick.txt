@@ -1,0 +1,2 @@
+Play using mouse:
+- Simply left-click on a piano key to play it.
