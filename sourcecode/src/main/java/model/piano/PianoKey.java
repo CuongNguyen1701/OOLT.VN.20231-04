@@ -1,4 +1,4 @@
-package model;
+package model.piano;
 
 import interfaces.Player;
 

@@ -1,5 +1,4 @@
-package model;
-
+package model.piano;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

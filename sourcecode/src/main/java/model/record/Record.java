@@ -1,7 +1,7 @@
 package model.record;
 
 import interfaces.Player;
-import model.Piano;
+import model.piano.Piano;
 
 import java.nio.file.Paths;
 

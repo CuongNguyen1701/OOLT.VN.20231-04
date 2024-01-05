@@ -1,9 +1,7 @@
 package model.record;
 
-import model.PianoKey;
+import model.piano.PianoKey;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Recorder {

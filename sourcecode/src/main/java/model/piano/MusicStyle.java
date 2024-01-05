@@ -1,4 +1,4 @@
-package model;
+package model.piano;
 
 public class MusicStyle {
     private final String name;
