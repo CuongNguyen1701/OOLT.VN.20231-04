@@ -36,7 +36,8 @@ public class Home {
     @FXML private Label labelImportRecord;
     @FXML private Button buttonPlayRecord;
     @FXML private VBox vboxMusicStyle;
-    @FXML
+    @FXML private ToggleButton buttonKeyHint;
+    @FXML private AnchorPane keyHintParent;
 
     private Scene scene;
     Piano piano;
@@ -67,6 +68,9 @@ public class Home {
             setting.updateVolume(newValue.intValue());
             setVolumeSliderFill(percentage);
         });
+
+        buttonKeyHint.setText("KeyHint:Off");
+        keyHintParent.setVisible(false);
     }
 
 
@@ -231,6 +235,21 @@ public class Home {
         }
     }
 
+    @FXML
+    private void showHelpPopup() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Help.fxml"));
+            AnchorPane aboutPane = fxmlLoader.load();
+            Scene scene = new Scene(aboutPane);
+            Stage stage = new Stage();
+            stage.setTitle("Help");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void handleButtonRecordToggle(ActionEvent actionEvent) {
         if(recorder.getRecordingStatus()){
             recorder.stopRecording();
@@ -288,5 +307,17 @@ public class Home {
         if(record == null)
             return;
         record.play();
+    }
+    boolean keyHintOn = false;
+
+    @FXML
+    void handleButtonKeyHintOnClick(ActionEvent actionEvent){
+        keyHintOn = !keyHintOn;
+        keyHintParent.setVisible(keyHintOn);
+
+        if(keyHintOn)
+            buttonKeyHint.setText("KeyHint:On");
+        else
+            buttonKeyHint.setText("KeyHint:Off");
     }
 }
