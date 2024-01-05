@@ -201,8 +201,7 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
-                  </Pane>
-                  <AnchorPane fx:id="keyHintParent" prefHeight="230.4" prefWidth="1160.0">
+ <AnchorPane fx:id="keyHintParent" prefHeight="230.4" prefWidth="1160.0">
                         <children>
                            <Text layoutX="25.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="q" textAlignment="CENTER">
                               <font>
@@ -481,6 +480,8 @@
                            </Text>
                         </children>
                      </AnchorPane>
+                  </Pane>
+                 
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" />
