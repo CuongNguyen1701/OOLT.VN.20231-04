@@ -219,7 +219,7 @@ public class Home {
     @FXML
     private void showAboutPopup() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/About.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/About.fxml"));
             AnchorPane aboutPane = fxmlLoader.load();
             Scene scene = new Scene(aboutPane);
             Stage stage = new Stage();
@@ -234,7 +234,7 @@ public class Home {
     @FXML
     private void showHelpPopup() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Help.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Help.fxml"));
             AnchorPane aboutPane = fxmlLoader.load();
             Scene scene = new Scene(aboutPane);
             Stage stage = new Stage();
@@ -260,7 +260,7 @@ public class Home {
     @FXML
     private void showExportPopup() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Export.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Export.fxml"));
             AnchorPane exportPane = fxmlLoader.load();
             Export export = fxmlLoader.getController();
             export.setRecord(recorder.getRecord());
