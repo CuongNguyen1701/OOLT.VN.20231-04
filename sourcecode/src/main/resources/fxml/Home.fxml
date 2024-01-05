@@ -25,6 +25,7 @@
 <?import javafx.scene.text.Text?>
 
 
+
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Home">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleKeyTyped" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
@@ -497,9 +498,9 @@
                      </items>
                   </Menu>
                   <Menu fx:id="helpMenu" mnemonicParsing="false">
-                     <graphic>
-                        <Label onMouseClicked="#showAboutPopup" text="Help" />
-                     </graphic>
+                  <graphic>
+                     <Label onMouseClicked="#showHelpPopup" text="Help" />
+                  </graphic>
                   </Menu>
                   <Menu fx:id="aboutMenu" mnemonicParsing="false">
                      <graphic>

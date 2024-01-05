@@ -1,0 +1,3 @@
+Play using keyboard - Keyboard controls:
+- Press the corresponding key to play the major keys (above picture).
+- Minor keys are played by holding Shift and pressing the corresponding key.

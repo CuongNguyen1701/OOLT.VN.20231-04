@@ -1,0 +1,4 @@
+Import Piano Play Record:
+- Select File/Import Record... from the top left corner.
+- Open the valid csv file you want to import.
+- The imported file name will be shown in the setting bar and can be played!
