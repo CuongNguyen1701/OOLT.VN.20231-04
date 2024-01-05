@@ -4,6 +4,7 @@ import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,9 @@ public class Home {
     @FXML private Label labelImportRecord;
     @FXML private Button buttonPlayRecord;
     @FXML private VBox vboxMusicStyle;
+    @FXML private ToggleButton buttonKeyHint;
+    @FXML private AnchorPane keyHintParent;
+
     private Scene scene;
     Piano piano;
     Setting setting;
@@ -46,6 +50,7 @@ public class Home {
     Map<Integer, String> keyCodeToId = new HashMap<>();
     @FXML
     private void initialize() {
+
         // create piano
         ArrayList<String> pianoKeyNames = getAllPianoKeyName();
         this.setting = new Setting();
@@ -63,7 +68,13 @@ public class Home {
             setting.updateVolume(newValue.intValue());
             setVolumeSliderFill(percentage);
         });
+
+        buttonKeyHint.setText("KeyHint:Off");
+        keyHintParent.setVisible(false);
     }
+
+
+
     void setVolumeSliderFill(double percentage){
         String style = String.format(
                 "-track-color: linear-gradient(to top, " +
@@ -76,6 +87,7 @@ public class Home {
     }
     private void initializeMusicStyleToggleButtons() {
         ToggleGroup musicStyleToggleGroup = new ToggleGroup();
+        ArrayList<RadioButton> musicStyleButtons = new ArrayList<>();
         boolean first = true;
         for (String musicStyleName : Setting.VALID_MUSIC_STYLES) {
             // capitalize the first letter of the music style name before displaying it
@@ -91,6 +103,7 @@ public class Home {
                 piano.batchUpdateLastUsedPath(setting.getMusicStyle().getPath());
             });
             first = false;
+            musicStyleButtons.add(musicStyleButton);
             vboxMusicStyle.getChildren().add(musicStyleButton);
         }
     }
@@ -294,5 +307,17 @@ public class Home {
         if(record == null)
             return;
         record.play();
+    }
+    boolean keyHintOn = false;
+
+    @FXML
+    void handleButtonKeyHintOnClick(ActionEvent actionEvent){
+        keyHintOn = !keyHintOn;
+        keyHintParent.setVisible(keyHintOn);
+
+        if(keyHintOn)
+            buttonKeyHint.setText("KeyHint:On");
+        else
+            buttonKeyHint.setText("KeyHint:Off");
     }
 }
