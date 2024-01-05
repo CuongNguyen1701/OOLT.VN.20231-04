@@ -1,8 +1,6 @@
 package controller;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 import java.io.InputStream;

@@ -7,7 +7,7 @@ public class PianoApplication {
     public static class AppUI extends Application {
         @Override
         public void start(javafx.stage.Stage primaryStage) throws Exception {
-            final String HOME_FXML_FILE_PATH = "/fxml/Home.fxml";
+            final String HOME_FXML_FILE_PATH = "/view/Home.fxml";
             System.out.println(getClass().getResource(HOME_FXML_FILE_PATH));
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(HOME_FXML_FILE_PATH));
             Parent root = fxmlLoader.load();

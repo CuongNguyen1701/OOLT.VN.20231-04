@@ -1,8 +1,7 @@
 package model.record;
 
-import model.Piano;
-import model.PianoKey;
-import model.Setting;
+import model.piano.Piano;
+import model.piano.Setting;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,8 +12,6 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StepRecord extends Record {
     ArrayList<PianoEvent> pianoEvents;

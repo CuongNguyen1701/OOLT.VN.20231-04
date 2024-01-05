@@ -1,6 +1,6 @@
 package model.record;
 
-import model.PianoKey;
+import model.piano.PianoKey;
 
 public class PianoEvent {
     private PianoKey keyPressed;

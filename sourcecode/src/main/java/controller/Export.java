@@ -2,7 +2,6 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import model.record.AudioRecord;
 import model.record.Record;
@@ -13,7 +12,6 @@ import javafx.scene.control.Label;
 import model.record.StepRecord;
 
 import java.io.File;
-import java.nio.file.Paths;
 
 public class Export {
 

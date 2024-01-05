@@ -2,7 +2,7 @@ package model.record;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import model.Piano;
+import model.piano.Piano;
 
 import java.io.File;
 

@@ -1,10 +1,6 @@
 package controller;
 
 import javafx.animation.PauseTransition;
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +14,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.MusicStyle;
-import model.Piano;
-import model.PianoKey;
+import model.piano.MusicStyle;
+import model.piano.Piano;
+import model.piano.PianoKey;
 import model.record.Recorder;
-import model.Setting;
+import model.piano.Setting;
 import model.record.StepRecord;
 import model.record.Record;
 
@@ -223,7 +219,7 @@ public class Home {
     @FXML
     private void showAboutPopup() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/About.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/About.fxml"));
             AnchorPane aboutPane = fxmlLoader.load();
             Scene scene = new Scene(aboutPane);
             Stage stage = new Stage();
@@ -238,7 +234,7 @@ public class Home {
     @FXML
     private void showHelpPopup() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Help.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Help.fxml"));
             AnchorPane aboutPane = fxmlLoader.load();
             Scene scene = new Scene(aboutPane);
             Stage stage = new Stage();
@@ -264,7 +260,7 @@ public class Home {
     @FXML
     private void showExportPopup() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Export.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Export.fxml"));
             AnchorPane exportPane = fxmlLoader.load();
             Export export = fxmlLoader.getController();
             export.setRecord(recorder.getRecord());
