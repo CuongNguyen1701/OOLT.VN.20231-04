@@ -25,9 +25,12 @@ public class StepRecord extends Record {
         this.pianoEvents = pianoEvents;
     }
     @Override public void play() {
+        if(isPlaying)
+            return;
         Setting setting = new Setting();
         scheduler = Executors.newSingleThreadScheduledExecutor();
         long delay = 0; // Initial delay
+        isPlaying = true;
         for (PianoEvent pianoEvent : pianoEvents) {
             scheduler.schedule(() -> {
                 pianoEvent.getKeyPressed().play(setting);
@@ -39,6 +42,7 @@ public class StepRecord extends Record {
         }
         // Shutdown the scheduler after the last task
         scheduler.shutdown();
+        isPlaying = false;
     }
     @Override
     public String toString() {
@@ -50,6 +54,8 @@ public class StepRecord extends Record {
         return result.toString();
     }
     @Override public void stop() {
+        if(!isPlaying)
+            return;
         scheduler.shutdownNow();
     }
     @Override public void export(String path) {
