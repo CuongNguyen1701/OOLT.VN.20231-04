@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -225,6 +226,7 @@ public class Home {
             Stage stage = new Stage();
             stage.setTitle("About");
             stage.setScene(scene);
+            stage.getIcons().add(new Image("/images/about/icon.png"));
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -239,6 +241,7 @@ public class Home {
             Scene scene = new Scene(aboutPane);
             Stage stage = new Stage();
             stage.setTitle("Help");
+            stage.getIcons().add(new Image("/images/help_menu/icon.png"));
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {

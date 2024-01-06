@@ -3,6 +3,8 @@ import javafx.fxml.FXMLLoader;
 import controller.Home;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+
 public class PianoApplication {
     public static class AppUI extends Application {
         @Override
@@ -15,6 +17,10 @@ public class PianoApplication {
             Scene scene = new Scene(root);
 
             primaryStage.setTitle("Piano");
+            primaryStage.setResizable(false);
+            primaryStage.setFullScreen(false);
+            primaryStage.setFullScreenExitHint("");
+            primaryStage.getIcons().add(new Image("/images/icon.png"));
             primaryStage.setScene(scene);
             primaryStage.show();
         }

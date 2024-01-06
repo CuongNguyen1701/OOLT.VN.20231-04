@@ -19,7 +19,7 @@
                      <children>
                         <ImageView fitHeight="377.0" fitWidth="280.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/logo_about.png" />
+                              <Image url="@../images/about/logo_about.png" />
                            </image>
                         </ImageView>
                      </children>
