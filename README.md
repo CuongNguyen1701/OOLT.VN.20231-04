@@ -29,6 +29,9 @@ Users can interact with the piano by clicking on the GUI piano keys or pressing 
 The application also comes with some extra features namely key hints toggling, play recording and replaying, volume adjustment, and different music style options.
 ### Demo
 [Link to demo](https://husteduvn-my.sharepoint.com/:v:/g/personal/cuong_nt215005_sis_hust_edu_vn/EcAVAjRGiWxDsREOU_X_UF4BVZvGjd1MQwRIhHtsBJR2ZQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=u58Rsr)
+
+https://github.com/CuongNguyen1701/OOLT.VN.20231-04/assets/62497480/84eb1ac9-5717-4fbb-a95f-5c53aa4587a2
+
 ### Usage
 - Clone the repository
 - Navigate to the 'sourcecode' folder
