@@ -30,7 +30,7 @@ The application also comes with some extra features namely key hints toggling, p
 ### Demo
 [Link to demo](https://husteduvn-my.sharepoint.com/:v:/g/personal/cuong_nt215005_sis_hust_edu_vn/EcAVAjRGiWxDsREOU_X_UF4BVZvGjd1MQwRIhHtsBJR2ZQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=u58Rsr)
 
-https://github.com/CuongNguyen1701/OOLT.VN.20231-04/assets/62497480/84eb1ac9-5717-4fbb-a95f-5c53aa4587a2
+https://github.com/CuongNguyen1701/OOLT.VN.20231-04/assets/62497480/6f68bbd3-b2eb-4a53-be90-e1b72be2edc6
 
 ### Usage
 - Clone the repository
