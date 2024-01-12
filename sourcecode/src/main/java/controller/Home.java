@@ -68,6 +68,7 @@ public class Home {
 
         buttonKeyHint.setText("KeyHint:Off");
         keyHintParent.setVisible(false);
+        keyHintParent.setPickOnBounds(false);
     }
 
 
