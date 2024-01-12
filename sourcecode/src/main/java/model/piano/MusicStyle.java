@@ -1,15 +1,15 @@
 package model.piano;
 
 public class MusicStyle {
-    private final String name;
+    private final String NAME;
     public MusicStyle(String name) {
-        this.name = name;
+        this.NAME = name;
     }
     public String getPath() {
-        return "/audio/musicstyles/" + name + "/";
+        return "/audio/musicstyles/" + NAME + "/";
     }
 
     public String getName() {
-        return name;
+        return NAME;
     }
 }

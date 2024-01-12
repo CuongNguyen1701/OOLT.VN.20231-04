@@ -5,7 +5,7 @@ import model.piano.PianoKey;
 import java.util.ArrayList;
 
 public class Recorder {
-    ArrayList<PianoEvent> stepRecordBuffer = new ArrayList<>();
+    private final ArrayList<PianoEvent> STEP_RECORD_BUFFER = new ArrayList<>();
     private boolean isRecording = false;
     private long lastKeyPlayedTime;
 
@@ -16,7 +16,7 @@ public class Recorder {
     }
 
     public void startRecording(){
-        stepRecordBuffer.clear();
+        STEP_RECORD_BUFFER.clear();
         lastKeyPlayedTime = System.currentTimeMillis();
         isRecording = true;
         System.out.println("Recording...");
@@ -30,13 +30,13 @@ public class Recorder {
         long currentTime = System.currentTimeMillis();
         int interval = (int)(currentTime - lastKeyPlayedTime);
         // add the key and interval to the buffer
-        stepRecordBuffer.add(new PianoEvent(pianoKey, interval));
+        STEP_RECORD_BUFFER.add(new PianoEvent(pianoKey, interval));
         lastKeyPlayedTime = currentTime;
     }
     public void stopRecording(){
         isRecording = false;
         System.out.println("Recording stopped.");
-        record = new StepRecord(stepRecordBuffer);
+        record = new StepRecord(STEP_RECORD_BUFFER);
     }
     public Record getRecord(){
         return record;

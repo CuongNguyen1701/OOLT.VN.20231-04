@@ -15,10 +15,10 @@ public class PianoKey implements Player {
     private MediaPlayer mediaPlayer;
     private String lastUsedPath;
 
-    private List<Runnable> playCallbacks = new ArrayList<>();
+    private final List<Runnable> PLAY_CALLBACKS = new ArrayList<>();
     // Method to register callback when the key is played
     public void addPlayCallback(Runnable callback) {
-        playCallbacks.add(callback);
+        PLAY_CALLBACKS.add(callback);
     }
     public PianoKey(String name) {
         this.name = name;
@@ -49,7 +49,7 @@ public class PianoKey implements Player {
     }
     @Override
     public void play() {
-        playCallbacks.forEach(Runnable::run);
+        PLAY_CALLBACKS.forEach(Runnable::run);
         mediaPlayer.play();
         mediaPlayer.seek(mediaPlayer.getStartTime());
     }

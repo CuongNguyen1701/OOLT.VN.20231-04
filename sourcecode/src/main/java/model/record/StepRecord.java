@@ -14,8 +14,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class StepRecord extends Record {
-    ArrayList<PianoEvent> pianoEvents;
-    ScheduledExecutorService scheduler;
+    private ArrayList<PianoEvent> pianoEvents;
+    private ScheduledExecutorService scheduler;
     public StepRecord() {
         super();
         pianoEvents = new ArrayList<>();
