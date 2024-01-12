@@ -1,9 +1,13 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import controller.Home;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ButtonBar;
+import javafx.stage.WindowEvent;
 
 public class PianoApplication {
     public static class AppUI extends Application {
@@ -21,6 +25,18 @@ public class PianoApplication {
             primaryStage.setFullScreen(false);
             primaryStage.setFullScreenExitHint("");
             primaryStage.getIcons().add(new Image("/images/icon.png"));
+
+            primaryStage.setOnCloseRequest((WindowEvent event) -> {
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Exit Confirmation");
+                alert.setHeaderText("Are you sure you want to exit the application?");
+                //alert.setContentText("Are you sure you want to exit the application?");
+
+                if (alert.showAndWait().get() == ButtonType.OK)
+                    primaryStage.close();
+                else
+                    event.consume();
+            });
             primaryStage.setScene(scene);
             primaryStage.show();
         }
