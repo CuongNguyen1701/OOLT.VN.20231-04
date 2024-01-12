@@ -5,51 +5,51 @@ import java.util.Map;
 
 public class Piano {
     // for keyboard
-    private final Map<Integer, PianoKey> keyMap;
+    private final Map<Integer, PianoKey> KEYMAP;
     // for mouse clicking
-    private final Map<String, PianoKey> nameMap = new HashMap<>();
-    public Piano(Map<Integer, PianoKey> keyMap) {
-        this.keyMap = keyMap;
-        for (PianoKey pianoKey : keyMap.values()) {
-            nameMap.put(pianoKey.getName(), pianoKey);
+    private final Map<String, PianoKey> NAMEMAP = new HashMap<>();
+    public Piano(Map<Integer, PianoKey> KEYMAP) {
+        this.KEYMAP = KEYMAP;
+        for (PianoKey pianoKey : KEYMAP.values()) {
+            NAMEMAP.put(pianoKey.getName(), pianoKey);
         }
     }
     public Piano(ArrayList<String> keyNames) {
-        this.keyMap = new HashMap<>();
+        this.KEYMAP = new HashMap<>();
         for (String keyName : keyNames) {
             PianoKey pianoKey = new PianoKey(keyName);
-            nameMap.put(keyName, pianoKey);
+            NAMEMAP.put(keyName, pianoKey);
         }
     }
     public Piano(PianoKey[] pianoKeys) {
-        this.keyMap = new HashMap<>();
+        this.KEYMAP = new HashMap<>();
         for (PianoKey pianoKey : pianoKeys) {
-            nameMap.put(pianoKey.getName(), pianoKey);
+            NAMEMAP.put(pianoKey.getName(), pianoKey);
         }
     }
     public void setKeyMap(int keyCode, String pianoKeyName) {
-        keyMap.put(keyCode, nameMap.get(pianoKeyName));
+        KEYMAP.put(keyCode, NAMEMAP.get(pianoKeyName));
     }
     public PianoKey getKey(String keyName){
-        return nameMap.get(keyName);
+        return NAMEMAP.get(keyName);
     }
     public PianoKey getKey(int keyCode){
-        return keyMap.get(keyCode);
+        return KEYMAP.get(keyCode);
     }
     public void playKey(String keyName, Setting setting) {
-        PianoKey pianoKey = nameMap.get(keyName);
+        PianoKey pianoKey = NAMEMAP.get(keyName);
         if (pianoKey != null) {
             pianoKey.play(setting);
         }
     }
     public void playKey(int keyCode, Setting setting) {
-        PianoKey pianoKey = keyMap.get(keyCode);
+        PianoKey pianoKey = KEYMAP.get(keyCode);
         if (pianoKey != null) {
             pianoKey.play(setting);
         }
     }
     public void batchUpdateLastUsedPath(String path) {
-        for (PianoKey pianoKey : keyMap.values()) {
+        for (PianoKey pianoKey : KEYMAP.values()) {
             pianoKey.updateLastUsedPath(path);
         }
     }
