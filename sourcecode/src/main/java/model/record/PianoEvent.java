@@ -3,20 +3,20 @@ package model.record;
 import model.piano.PianoKey;
 
 public class PianoEvent {
-    private final PianoKey KEYPRESSED;
+    private final PianoKey KEY_PRESSED;
     private final int INTERVAL;
     public PianoEvent(PianoKey keyPressed, int interval) {
-        this.KEYPRESSED = keyPressed;
+        this.KEY_PRESSED = keyPressed;
         this.INTERVAL = interval;
     }
     public PianoKey getKeyPressed() {
-        return KEYPRESSED;
+        return KEY_PRESSED;
     }
     public int getInterval() {
         return INTERVAL;
     }
     @Override
     public String toString() {
-        return KEYPRESSED.getName() + ": " + INTERVAL + "ms";
+        return KEY_PRESSED.getName() + ": " + INTERVAL + "ms";
     }
 }
